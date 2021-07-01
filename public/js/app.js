@@ -2325,17 +2325,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
@@ -2351,9 +2345,9 @@ __webpack_require__.r(__webpack_exports__);
     categoryInsert: function categoryInsert() {
       var _this = this;
 
-      axios.post('/api/category', this.form).then(function () {
+      axios.post("/api/category", this.form).then(function () {
         _this.$router.push({
-          name: 'category'
+          name: "category"
         });
 
         Notification.success();
@@ -2562,18 +2556,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       categories: [],
-      searchTerm: ''
+      searchTerm: "",
+      text_red: "red",
+      error: ""
     };
   },
   computed: {
@@ -2589,34 +2602,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allCategory: function allCategory() {
       var _this2 = this;
 
-      axios.get('/api/category/').then(function (_ref) {
+      axios.get("/api/category/").then(function (_ref) {
         var data = _ref.data;
         return _this2.categories = data;
-      })["catch"]();
+      })["catch"](function (error) {
+        return _this2.error = error;
+      });
     },
     deleteCategory: function deleteCategory(id) {
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/category/' + id).then(function () {
+          axios["delete"]("/api/category/" + id).then(function () {
             _this3.categories = _this3.categories.filter(function (category) {
               return category.id != id;
             });
           })["catch"](function () {
             _this3.$router.push({
-              name: 'category'
+              name: "category"
             });
           });
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
     }
@@ -4282,21 +4297,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
-      todaysell: '',
-      income: '',
-      due: '',
-      expense: '',
-      products: ''
+      todaysell: "",
+      income: "",
+      due: "",
+      expense: "",
+      products: {}
     };
   },
   mounted: function mounted() {
@@ -4310,7 +4353,7 @@ __webpack_require__.r(__webpack_exports__);
     TodaySell: function TodaySell() {
       var _this = this;
 
-      axios.get('/api/today/sell').then(function (_ref) {
+      axios.get("/api/today/sell").then(function (_ref) {
         var data = _ref.data;
         return _this.todaysell = data;
       })["catch"]();
@@ -4318,7 +4361,7 @@ __webpack_require__.r(__webpack_exports__);
     TodayIncome: function TodayIncome() {
       var _this2 = this;
 
-      axios.get('/api/today/income').then(function (_ref2) {
+      axios.get("/api/today/income").then(function (_ref2) {
         var data = _ref2.data;
         return _this2.income = data;
       })["catch"]();
@@ -4326,7 +4369,7 @@ __webpack_require__.r(__webpack_exports__);
     TodayDue: function TodayDue() {
       var _this3 = this;
 
-      axios.get('/api/today/due').then(function (_ref3) {
+      axios.get("/api/today/due").then(function (_ref3) {
         var data = _ref3.data;
         return _this3.due = data;
       })["catch"]();
@@ -4334,7 +4377,7 @@ __webpack_require__.r(__webpack_exports__);
     TodayExpense: function TodayExpense() {
       var _this4 = this;
 
-      axios.get('/api/today/expense').then(function (_ref4) {
+      axios.get("/api/today/expense").then(function (_ref4) {
         var data = _ref4.data;
         return _this4.expense = data;
       })["catch"]();
@@ -4342,7 +4385,7 @@ __webpack_require__.r(__webpack_exports__);
     StockOut: function StockOut() {
       var _this5 = this;
 
-      axios.get('/api/today/stockout').then(function (_ref5) {
+      axios.get("/api/today/stockout").then(function (_ref5) {
         var data = _ref5.data;
         return _this5.products = data;
       })["catch"]();
@@ -11865,7 +11908,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -51210,7 +51253,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/category" } },
-          [_vm._v("All Category ")]
+          [_vm._v("All Category\n    ")]
         )
       ],
       1
@@ -51273,9 +51316,9 @@ var render = function() {
                             _vm.errors.category_name
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.category_name[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -51320,7 +51363,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
@@ -51498,7 +51541,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-category" } },
-          [_vm._v("Add Category ")]
+          [_vm._v("Add Category\n    ")]
         )
       ],
       1
@@ -51529,6 +51572,14 @@ var render = function() {
       }
     }),
     _vm._v(" "),
+    _vm.error
+      ? _c(
+          "div",
+          { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+          [_vm._v("\n    " + _vm._s(_vm.error) + "\n  ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -51547,9 +51598,7 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(category) {
                     return _c("tr", { key: category.id }, [
-                      _c("td", [
-                        _vm._v(" " + _vm._s(category.category_name) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(category.category_name))]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -51611,7 +51660,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -54146,13 +54195,23 @@ var render = function() {
                   {
                     staticClass: "text-xs font-weight-bold text-uppercase mb-1"
                   },
-                  [_vm._v("Today Sell Amount")]
+                  [
+                    _vm._v(
+                      "\n                Today Sell Amount\n              "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.todaysell))]
+                  [
+                    _vm._v(
+                      "\n                $ " +
+                        _vm._s(_vm.todaysell) +
+                        "\n              "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -54174,13 +54233,19 @@ var render = function() {
                   {
                     staticClass: "text-xs font-weight-bold text-uppercase mb-1"
                   },
-                  [_vm._v("Today Income")]
+                  [_vm._v("\n                Today Income\n              ")]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.income) + " ")]
+                  [
+                    _vm._v(
+                      "\n                $ " +
+                        _vm._s(_vm.income) +
+                        "\n              "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm._m(3)
@@ -54202,7 +54267,7 @@ var render = function() {
                   {
                     staticClass: "text-xs font-weight-bold text-uppercase mb-1"
                   },
-                  [_vm._v("Today Due")]
+                  [_vm._v("\n                Today Due\n              ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -54210,7 +54275,13 @@ var render = function() {
                   {
                     staticClass: "h5 mb-0 mr-3 font-weight-bold text-gray-800"
                   },
-                  [_vm._v("$ " + _vm._s(_vm.due) + " ")]
+                  [
+                    _vm._v(
+                      "\n                $ " +
+                        _vm._s(_vm.due) +
+                        "\n              "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm._m(5)
@@ -54232,13 +54303,19 @@ var render = function() {
                   {
                     staticClass: "text-xs font-weight-bold text-uppercase mb-1"
                   },
-                  [_vm._v("Today Expense")]
+                  [_vm._v("\n                Today Expense\n              ")]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.expense) + " ")]
+                  [
+                    _vm._v(
+                      "\n                $ " +
+                        _vm._s(_vm.expense) +
+                        "\n              "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm._m(7)
@@ -54263,15 +54340,13 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.products, function(product) {
-                    return _c("tr", { key: product.id }, [
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_name) + " ")
-                      ]),
+                  _vm._l(_vm.products, function(product, i) {
+                    return _c("tr", { key: i }, [
+                      _c("td", [_vm._v(_vm._s(i))]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_code) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(product.product_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.product_code))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
@@ -54432,11 +54507,11 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-          _vm._v("Out Of Stock Product")
+          _vm._v("Produk Habis")
         ])
       ]
     )
@@ -54447,6 +54522,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
+        _c("th", [_vm._v("No.")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Code")]),
@@ -75562,7 +75639,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

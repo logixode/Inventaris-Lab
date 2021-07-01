@@ -26,6 +26,8 @@ Route::apiResource('/customer', 'Api\CustomerController');
 Route::Post('/salary/paid/{id}', 'Api\SalaryController@Paid');
 Route::Get('/salary', 'Api\SalaryController@AllSalary');
 
+Route::Get('/contact-person/{id}', 'Api\ContactPersonController@index');
+
 Route::Get('/salary/view/{id}', 'Api\SalaryController@ViewSalary');
 Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
 Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
