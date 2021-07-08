@@ -1,10 +1,8 @@
- 
-
 <template>
   <div>
     <div class="row">
       <router-link to="/category" class="btn btn-primary"
-        >Semua Kategori
+        >All Category
       </router-link>
     </div>
 
@@ -22,12 +20,15 @@
                   <form class="user" @submit.prevent="categoryInsert">
                     <div class="form-group">
                       <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                          <label for="exampleFormControlTextarea1"
+                            ><b>Nama Kategori </b></label
+                          >
                           <input
                             type="text"
                             class="form-control"
                             id="exampleInputFirstName"
-                            placeholder="Masukkan nama kategori"
+                            placeholder="Enter Your Category Name"
                             v-model="form.nama_kategori"
                           />
                           <small
@@ -35,6 +36,104 @@
                             v-if="errors.nama_kategori"
                           >
                             {{ errors.nama_kategori[0] }}
+                          </small>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="exampleFormControlTextarea1"
+                            ><b>Kategori Inti </b></label
+                          >
+                          <select
+                            class="form-control"
+                            id="exampleFormControlSelect1"
+                            v-model="form.kategori_inti"
+                          >
+                            <option selected disabled :value="null">
+                              Pilih Kategori
+                            </option>
+                            <option
+                              v-for="data in kategori_inti"
+                              :value="data.id"
+                              :key="data.id"
+                            >
+                              {{ data.value }}
+                            </option>
+                          </select>
+                          <small
+                            class="text-danger"
+                            v-if="errors.kategori_inti"
+                          >
+                            {{ errors.kategori_inti[0] }}
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-row">
+                        <div class="col-md-6">
+                          <label for="exampleFormControlTextarea1"
+                            ><b>Keterangan </b></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputFirstName1"
+                            placeholder="Enter Your Kategori"
+                            v-model="form.keterangan"
+                          />
+                          <small class="text-danger" v-if="errors.keterangan">
+                            {{ errors.keterangan[0] }}
+                          </small>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="exampleFormControlTextarea1"
+                            ><b>Gambar </b></label
+                          >
+                          <div class="row justify-content-between">
+                            <div class="col-9 d-flex">
+                              <input
+                                type="file"
+                                accept="image/*"
+                                id="customFile"
+                                class="input-file w-full"
+                                @change="onFileSelected"
+                              />
+                              <div
+                                class="
+                                  input-image
+                                  bg-primary
+                                  border
+                                  rounded-lg
+                                  border-secondary
+                                  d-flex
+                                "
+                              >
+                                <p class="m-auto">Pilih Gambar</p>
+                              </div>
+                            </div>
+
+                            <div class="col-3 d-flex justify-content-end">
+                              <img
+                                v-if="form.gambar"
+                                :src="form.gambar"
+                                alt=""
+                                srcset=""
+                                class="input-image-preview bg-gray-dark"
+                              />
+                              <div
+                                v-if="!form.gambar"
+                                src="/"
+                                alt=""
+                                srcset=""
+                                class="input-image-preview default-image"
+                              >
+                                <i class="fas fa-image fa-fw"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <small class="text-danger" v-if="errors.gambar">
+                            {{ errors.gambar[0] }}
                           </small>
                         </div>
                       </div>
@@ -68,30 +167,72 @@ export default {
       this.$router.push({ name: "/" });
     }
   },
+  mounted() {
+    let localData = localStorage.getItem("categories") || [];
+    this.localData = JSON.parse(localData);
+  },
 
   data() {
     return {
       form: {
-        nama_kategori: null,
+        nama_kategori: "",
+        kategori_inti: null,
+        keterangan: "",
+        gambar: "",
       },
+      kategori_inti: [
+        {
+          id: 0,
+          value: "Perkakas",
+        },
+        {
+          id: 1,
+          value: "Jaringan",
+        },
+      ],
+
       errors: {},
+      localData: [],
     };
   },
 
   methods: {
+    onFileSelected(event) {
+      let file = event.target.files[0];
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {
+        let reader = new FileReader();
+        reader.onload = (event) => {
+          this.form.gambar = event.target.result;
+          // console.log(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
     categoryInsert() {
-      axios
-        .post("/api/category", this.form)
-        .then(() => {
-          this.$router.push({ name: "category" });
-          Notification.success();
-        })
-        .catch((error) => (this.errors = error.response.data.errors));
+      // axios
+      //   .post("/api/category", this.form)
+      //   .then(() => {
+      //     this.$router.push({ name: "category" });
+      //     Notification.success();
+      //   })
+      //   .catch((error) => (this.errors = error.response.data.errors));
+
+      this.localData.push(this.form);
+      let categories = JSON.stringify(this.localData);
+
+      localStorage.setItem("categories", categories);
+
+      setTimeout(() => {
+        Notification.success();
+        this.$router.push({ name: "category" });
+      }, 1000);
     },
   },
 };
 </script>
 
 
-<style type="text/css">
+<style>
 </style>

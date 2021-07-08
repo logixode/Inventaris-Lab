@@ -40,26 +40,32 @@
               <thead class="thead-light">
                 <tr>
                   <th>Nama Kategori</th>
+                  <th>Kategori Inti</th>
+                  <th>Gambar</th>
+                  <th>Keterangan</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="category in filtersearch" :key="category.id">
+                <tr v-for="(category, i) in filtersearch" :key="i">
                   <td>{{ category.nama_kategori }}</td>
+                  <td>{{ getKategoriInti(category.kategori_inti) }}</td>
+                  <td>
+                    <img :src="category.gambar" alt="" height="50px" />
+                  </td>
+                  <td>{{ category.keterangan }}</td>
 
                   <td>
                     <router-link
                       :to="{
                         name: 'edit-category',
-                        params: { id: category.id },
+                        params: { id: i },
                       }"
                       class="btn btn-sm btn-primary"
                       >Edit</router-link
                     >
 
-                    <a
-                      @click="deleteCategory(category.id)"
-                      class="btn btn-sm btn-danger"
+                    <a @click="deleteCategory(i)" class="btn btn-sm btn-danger"
                       ><font color="#ffffff">Hapus</font></a
                     >
                   </td>
@@ -87,6 +93,17 @@ export default {
       categories: [],
       searchTerm: "",
       text_red: "red",
+
+      kategori_inti: [
+        {
+          id: 0,
+          value: "Perkakas",
+        },
+        {
+          id: 1,
+          value: "Jaringan",
+        },
+      ],
       error: "",
     };
   },
@@ -100,10 +117,12 @@ export default {
 
   methods: {
     allCategory() {
-      axios
-        .get("/api/category/")
-        .then(({ data }) => (this.categories = data))
-        .catch((error) => (this.error = error));
+      // axios
+      //   .get("/api/category/")
+      //   .then(({ data }) => (this.categories = data))
+      //   .catch((error) => (this.error = error));
+      let categories = localStorage.getItem("categories") || [];
+      this.categories = JSON.parse(categories);
     },
     deleteCategory(id) {
       Swal.fire({
@@ -116,19 +135,28 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.value) {
-          axios
-            .delete("/api/category/" + id)
-            .then(() => {
-              this.categories = this.categories.filter((category) => {
-                return category.id != id;
-              });
-            })
-            .catch(() => {
-              this.$router.push({ name: "category" });
-            });
+          // axios
+          //   .delete("/api/category/" + id)
+          //   .then(() => {
+          //     this.categories = this.categories.filter((category) => {
+          //       return category.id != id;
+          //     });
+          //   })
+          //   .catch(() => {
+          //     this.$router.push({ name: "category" });
+          //   });
+
+          let categories = this.categories.splice(id, 1);
+
+          localStorage.setItem("categories", JSON.stringify(categories));
+
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
+    },
+    getKategoriInti(val) {
+      let i = this.kategori_inti.findIndex((x) => x.id === val);
+      return this.kategori_inti[i].value;
     },
   },
   created() {

@@ -2325,6 +2325,105 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
@@ -2333,27 +2432,67 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  mounted: function mounted() {
+    var localData = localStorage.getItem("categories") || [];
+    this.localData = JSON.parse(localData);
+  },
   data: function data() {
     return {
       form: {
-        nama_kategori: null
+        nama_kategori: "",
+        kategori_inti: null,
+        keterangan: "",
+        gambar: ""
       },
-      errors: {}
+      kategori_inti: [{
+        id: 0,
+        value: "Perkakas"
+      }, {
+        id: 1,
+        value: "Jaringan"
+      }],
+      errors: {},
+      localData: []
     };
   },
   methods: {
-    categoryInsert: function categoryInsert() {
+    onFileSelected: function onFileSelected(event) {
       var _this = this;
 
-      axios.post("/api/category", this.form).then(function () {
-        _this.$router.push({
+      var file = event.target.files[0];
+
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this.form.gambar = event.target.result; // console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    },
+    categoryInsert: function categoryInsert() {
+      var _this2 = this;
+
+      // axios
+      //   .post("/api/category", this.form)
+      //   .then(() => {
+      //     this.$router.push({ name: "category" });
+      //     Notification.success();
+      //   })
+      //   .catch((error) => (this.errors = error.response.data.errors));
+      this.localData.push(this.form);
+      var categories = JSON.stringify(this.localData);
+      localStorage.setItem("categories", categories);
+      setTimeout(function () {
+        Notification.success();
+
+        _this2.$router.push({
           name: "category"
         });
-
-        Notification.success();
-      })["catch"](function (error) {
-        return _this.errors = error.response.data.errors;
-      });
+      }, 1000);
     }
   }
 });
@@ -2369,10 +2508,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var _created$data$created;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2436,46 +2571,182 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = (_created$data$created = {
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
         name: "/"
       });
-    }
+    } // axios
+    //   .get("/api/category/" + id)
+    //   .then(({ data }) => (this.form = data))
+    //   .catch(console.log("error"));
+
+  },
+  mounted: function mounted() {
+    var localData = localStorage.getItem("categories") || [];
+    this.localData = JSON.parse(localData);
+    var id = this.$route.params.id;
+    this.form = this.localData[id];
   },
   data: function data() {
     return {
       form: {
-        nama_kategori: ""
+        nama_kategori: "",
+        keterangan: "",
+        gambar: "",
+        kategori_inti: null
       },
-      errors: {}
+      kategori_inti: [{
+        id: 0,
+        value: "Perkakas"
+      }, {
+        id: 1,
+        value: "Jaringan"
+      }],
+      errors: {},
+      localData: []
     };
+  },
+  methods: {
+    onFileSelected: function onFileSelected(event) {
+      var file = event.target.files[0];
+
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {// let reader = new FileReader();
+        // reader.onload = (event) => {
+        //   this.form.gambar = event.target.result;
+        //   // console.log(event.target.result);
+        // };
+        // reader.readAsDataURL(file);
+      }
+    },
+    categoryUpdate: function categoryUpdate() {
+      var _this = this;
+
+      var id = this.$route.params.id; // axios
+      //   .patch("/api/category/" + id, this.form)
+      //   .then(() => {
+      //     this.$router.push({ name: "category" });
+      //     Notification.success();
+      //   })
+      //   .catch((error) => (this.errors = error.response.data.errors));
+
+      this.localData[id] = this.form;
+      var categories = JSON.stringify(this.localData);
+      localStorage.setItem("categories", categories);
+      setTimeout(function () {
+        Notification.success();
+
+        _this.$router.push({
+          name: "category"
+        });
+      }, 1000);
+    }
   }
-}, _defineProperty(_created$data$created, "created", function created() {
-  var _this = this;
-
-  var id = this.$route.params.id;
-  axios.get("/api/category/" + id).then(function (_ref) {
-    var data = _ref.data;
-    return _this.form = data;
-  })["catch"](console.log("error"));
-}), _defineProperty(_created$data$created, "methods", {
-  categoryUpdate: function categoryUpdate() {
-    var _this2 = this;
-
-    var id = this.$route.params.id;
-    axios.patch("/api/category/" + id, this.form).then(function () {
-      _this2.$router.push({
-        name: "category"
-      });
-
-      Notification.success();
-    })["catch"](function (error) {
-      return _this2.errors = error.response.data.errors;
-    });
-  }
-}), _created$data$created);
+});
 
 /***/ }),
 
@@ -2567,6 +2838,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
@@ -2580,6 +2857,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       categories: [],
       searchTerm: "",
       text_red: "red",
+      kategori_inti: [{
+        id: 0,
+        value: "Perkakas"
+      }, {
+        id: 1,
+        value: "Jaringan"
+      }],
       error: ""
     };
   },
@@ -2594,17 +2878,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     allCategory: function allCategory() {
-      var _this2 = this;
-
-      axios.get("/api/category/").then(function (_ref) {
-        var data = _ref.data;
-        return _this2.categories = data;
-      })["catch"](function (error) {
-        return _this2.error = error;
-      });
+      // axios
+      //   .get("/api/category/")
+      //   .then(({ data }) => (this.categories = data))
+      //   .catch((error) => (this.error = error));
+      var categories = localStorage.getItem("categories") || [];
+      this.categories = JSON.parse(categories);
     },
     deleteCategory: function deleteCategory(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       Swal.fire({
         title: "Are you sure?",
@@ -2616,18 +2898,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]("/api/category/" + id).then(function () {
-            _this3.categories = _this3.categories.filter(function (category) {
-              return category.id != id;
-            });
-          })["catch"](function () {
-            _this3.$router.push({
-              name: "category"
-            });
-          });
+          // axios
+          //   .delete("/api/category/" + id)
+          //   .then(() => {
+          //     this.categories = this.categories.filter((category) => {
+          //       return category.id != id;
+          //     });
+          //   })
+          //   .catch(() => {
+          //     this.$router.push({ name: "category" });
+          //   });
+          var categories = _this2.categories.splice(id, 1);
+
+          localStorage.setItem("categories", JSON.stringify(categories));
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
+    },
+    getKategoriInti: function getKategoriInti(val) {
+      var i = this.kategori_inti.findIndex(function (x) {
+        return x.id === val;
+      });
+      return this.kategori_inti[i].value;
     }
   }
 }, "created", function created() {
@@ -2760,11 +3052,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
@@ -2802,9 +3125,9 @@ __webpack_require__.r(__webpack_exports__);
     customerInsert: function customerInsert() {
       var _this2 = this;
 
-      axios.post('/api/customer', this.form).then(function () {
+      axios.post("/api/customer", this.form).then(function () {
         _this2.$router.push({
-          name: 'customer'
+          name: "customer"
         });
 
         Notification.success();
@@ -51686,7 +52009,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/category" } },
-          [_vm._v("Semua Kategori\n    ")]
+          [_vm._v("All Category\n    ")]
         )
       ],
       1
@@ -51715,7 +52038,9 @@ var render = function() {
                     [
                       _c("div", { staticClass: "form-group" }, [
                         _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
                             _c("input", {
                               directives: [
                                 {
@@ -51729,7 +52054,7 @@ var render = function() {
                               attrs: {
                                 type: "text",
                                 id: "exampleInputFirstName",
-                                placeholder: "Masukkan nama kategori"
+                                placeholder: "Enter Your Category Name"
                               },
                               domProps: { value: _vm.form.nama_kategori },
                               on: {
@@ -51755,11 +52080,216 @@ var render = function() {
                                   )
                                 ])
                               : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(2),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.kategori_inti,
+                                    expression: "form.kategori_inti"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { id: "exampleFormControlSelect1" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "kategori_inti",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { selected: "", disabled: "" },
+                                    domProps: { value: null }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Pilih Kategori\n                          "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.kategori_inti, function(data) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: data.id,
+                                      domProps: { value: data.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(data.value) +
+                                          "\n                          "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.kategori_inti
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.kategori_inti[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "form-row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.keterangan,
+                                  expression: "form.keterangan"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "exampleInputFirstName1",
+                                placeholder: "Enter Your Kategori"
+                              },
+                              domProps: { value: _vm.form.keterangan },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "keterangan",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.keterangan
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.keterangan[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row justify-content-between" },
+                              [
+                                _c("div", { staticClass: "col-9 d-flex" }, [
+                                  _c("input", {
+                                    staticClass: "input-file w-full",
+                                    attrs: {
+                                      type: "file",
+                                      accept: "image/*",
+                                      id: "customFile"
+                                    },
+                                    on: { change: _vm.onFileSelected }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(5)
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-3 d-flex justify-content-end"
+                                  },
+                                  [
+                                    _vm.form.gambar
+                                      ? _c("img", {
+                                          staticClass:
+                                            "input-image-preview bg-gray-dark",
+                                          attrs: {
+                                            src: _vm.form.gambar,
+                                            alt: "",
+                                            srcset: ""
+                                          }
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.form.gambar
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "input-image-preview default-image",
+                                            attrs: {
+                                              src: "/",
+                                              alt: "",
+                                              srcset: ""
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-image fa-fw"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.gambar
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.gambar[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(6)
                     ]
                   ),
                   _vm._v(" "),
@@ -51787,6 +52317,51 @@ var staticRenderFns = [
         _vm._v("Tambah Kategori")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Nama Kategori ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Kategori Inti ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Keterangan ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Gambar ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "\n                                input-image\n                                bg-primary\n                                border\n                                rounded-lg\n                                border-secondary\n                                d-flex\n                              "
+      },
+      [_c("p", { staticClass: "m-auto" }, [_vm._v("Pilih Gambar")])]
+    )
   },
   function() {
     var _vm = this
@@ -51859,7 +52434,9 @@ var render = function() {
                     [
                       _c("div", { staticClass: "form-group" }, [
                         _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
                             _c("input", {
                               directives: [
                                 {
@@ -51899,11 +52476,216 @@ var render = function() {
                                   )
                                 ])
                               : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(2),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.kategori_inti,
+                                    expression: "form.kategori_inti"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { id: "exampleFormControlSelect1" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "kategori_inti",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { selected: "", disabled: "" },
+                                    domProps: { value: null }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Pilih Kategori\n                          "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.kategori_inti, function(data) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: data.id,
+                                      domProps: { value: data.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(data.value) +
+                                          "\n                          "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.kategori_inti
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.kategori_inti[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "form-row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.keterangan,
+                                  expression: "form.keterangan"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "exampleInputFirstName1",
+                                placeholder: "Enter Your Kategori"
+                              },
+                              domProps: { value: _vm.form.keterangan },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "keterangan",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.keterangan
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.keterangan[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row justify-content-between" },
+                              [
+                                _c("div", { staticClass: "col-9 d-flex" }, [
+                                  _c("input", {
+                                    staticClass: "input-file w-full",
+                                    attrs: {
+                                      type: "file",
+                                      accept: "image/*",
+                                      id: "customFile"
+                                    },
+                                    on: { change: _vm.onFileSelected }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(5)
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-3 d-flex justify-content-end"
+                                  },
+                                  [
+                                    _vm.form.gambar
+                                      ? _c("img", {
+                                          staticClass:
+                                            "input-image-preview bg-gray-dark",
+                                          attrs: {
+                                            src: _vm.form.gambar,
+                                            alt: "",
+                                            srcset: ""
+                                          }
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !_vm.form.gambar
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "input-image-preview default-image",
+                                            attrs: {
+                                              src: "/",
+                                              alt: "",
+                                              srcset: ""
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-image fa-fw"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.gambar
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.gambar[0]) +
+                                      "\n                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(6)
                     ]
                   ),
                   _vm._v(" "),
@@ -51931,6 +52713,51 @@ var staticRenderFns = [
         _vm._v("Update Kategori")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Nama Kategori ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Kategori Inti ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Keterangan ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+      _c("b", [_vm._v("Gambar ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "\n                                input-image\n                                bg-primary\n                                border\n                                rounded-lg\n                                border-secondary\n                                d-flex\n                              "
+      },
+      [_c("p", { staticClass: "m-auto" }, [_vm._v("Pilih Gambar")])]
+    )
   },
   function() {
     var _vm = this
@@ -52029,9 +52856,27 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.filtersearch, function(category) {
-                    return _c("tr", { key: category.id }, [
+                  _vm._l(_vm.filtersearch, function(category, i) {
+                    return _c("tr", { key: i }, [
                       _c("td", [_vm._v(_vm._s(category.nama_kategori))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(_vm.getKategoriInti(category.kategori_inti))
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("img", {
+                          attrs: {
+                            src: category.gambar,
+                            alt: "",
+                            height: "50px"
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(category.keterangan))]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -52043,7 +52888,7 @@ var render = function() {
                               attrs: {
                                 to: {
                                   name: "edit-category",
-                                  params: { id: category.id }
+                                  params: { id: i }
                                 }
                               }
                             },
@@ -52056,7 +52901,7 @@ var render = function() {
                               staticClass: "btn btn-sm btn-danger",
                               on: {
                                 click: function($event) {
-                                  return _vm.deleteCategory(category.id)
+                                  return _vm.deleteCategory(i)
                                 }
                               }
                             },
@@ -52110,6 +52955,12 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nama Kategori")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Kategori Inti")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Gambar")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Keterangan")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])
     ])
@@ -52144,7 +52995,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/customer" } },
-          [_vm._v("All Customer ")]
+          [_vm._v("All Customer\n    ")]
         )
       ],
       1
@@ -52209,7 +53060,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.name
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.name[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -52250,7 +53105,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52296,7 +53153,9 @@ var render = function() {
                             _vm.errors.address
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.address[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52338,7 +53197,9 @@ var render = function() {
                             _vm.errors.phone
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.phone[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52358,7 +53219,9 @@ var render = function() {
                             _vm.errors.photo
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.photo[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -52451,7 +53314,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
