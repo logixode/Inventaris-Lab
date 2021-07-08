@@ -8,6 +8,45 @@
       </router-link>
     </div>
 
+    <div class="modal fade show" v-if="modal_add_kategori" id="exampleModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Tambah Kategori Inti
+            </h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Kategori Inti Baru:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  v-model="add_kategori"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="modal_add_kategori = false"
+            >
+              Close
+            </button>
+            <button type="button" @click="addCategory" class="btn btn-primary">
+              Send message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row justify-content-center">
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm my-5">
@@ -30,8 +69,9 @@
                             type="text"
                             class="form-control"
                             id="exampleInputFirstName"
-                            placeholder="Enter Your Category Name"
+                            placeholder="Masukkan Nama Kategori"
                             v-model="form.nama_kategori"
+                            required
                           />
                           <small
                             class="text-danger"
@@ -42,31 +82,45 @@
                         </div>
 
                         <div class="col-md-6">
-                          <label for="exampleFormControlTextarea1"
-                            ><b>Kategori Inti </b></label
-                          >
-                          <select
-                            class="form-control"
-                            id="exampleFormControlSelect1"
-                            v-model="form.kategori_inti"
-                          >
-                            <option selected disabled :value="null">
-                              Pilih Kategori
-                            </option>
-                            <option
-                              v-for="data in kategori_inti"
-                              :value="data.id"
-                              :key="data.id"
-                            >
-                              {{ data.value }}
-                            </option>
-                          </select>
-                          <small
-                            class="text-danger"
-                            v-if="errors.kategori_inti"
-                          >
-                            {{ errors.kategori_inti[0] }}
-                          </small>
+                          <label for="exampleFormControlTextarea1">
+                            <b>Kategori Inti </b>
+                          </label>
+                          <div class="d-flex">
+                            <div class="flex-grow-1">
+                              <select
+                                class="form-control"
+                                id="exampleFormControlSelect1"
+                                v-model="form.kategori_inti"
+                                required
+                              >
+                                <option selected disabled :value="null">
+                                  Pilih Kategori Inti
+                                </option>
+                                <option
+                                  v-for="data in kategori_inti"
+                                  :value="data.id"
+                                  :key="data.id"
+                                >
+                                  {{ data.value }}
+                                </option>
+                              </select>
+                              <small
+                                class="text-danger"
+                                v-if="errors.kategori_inti"
+                              >
+                                {{ errors.kategori_inti[0] }}
+                              </small>
+                            </div>
+                            <div class="pl-2">
+                              <button
+                                type="button"
+                                class="btn btn-primary h-100"
+                                @click="modal_add_kategori = true"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -80,8 +134,9 @@
                             type="text"
                             class="form-control"
                             id="exampleInputFirstName1"
-                            placeholder="Enter Your Kategori"
+                            placeholder="Masukkan keterangan"
                             v-model="form.keterangan"
+                            required
                           />
                           <small class="text-danger" v-if="errors.keterangan">
                             {{ errors.keterangan[0] }}
@@ -89,11 +144,11 @@
                         </div>
 
                         <div class="col-md-6">
-                          <label for="exampleFormControlTextarea1"
-                            ><b>Gambar </b></label
-                          >
-                          <div class="row justify-content-between">
-                            <div class="col-9 d-flex">
+                          <label for="exampleFormControlTextarea1">
+                            <b>Gambar </b>
+                          </label>
+                          <div class="d-flex justify-content-between">
+                            <div class="flex-grow-1 mr-2">
                               <input
                                 type="file"
                                 accept="image/*"
@@ -115,7 +170,7 @@
                               </div>
                             </div>
 
-                            <div class="col-3 d-flex justify-content-end">
+                            <div class="d-flex justify-content-end">
                               <img
                                 v-if="form.gambar"
                                 :src="form.gambar"
@@ -174,13 +229,6 @@ export default {
     //   .then(({ data }) => (this.form = data))
     //   .catch(console.log("error"));
   },
-  mounted() {
-    let localData = localStorage.getItem("categories") || [];
-    this.localData = JSON.parse(localData);
-
-    let id = this.$route.params.id;
-    this.form = this.localData[id];
-  },
 
   data() {
     return {
@@ -190,20 +238,34 @@ export default {
         gambar: "",
         kategori_inti: null,
       },
-      kategori_inti: [
-        {
-          id: 0,
-          value: "Perkakas",
-        },
-        {
-          id: 1,
-          value: "Jaringan",
-        },
-      ],
+      kategori_inti: [],
+
+      add_kategori: "",
+      modal_add_kategori: false,
 
       errors: {},
-      localData: [],
+      kategori: [],
     };
+  },
+
+  mounted() {
+    let kategori = localStorage.getItem("kategori") || [];
+    this.kategori = JSON.parse(kategori);
+
+    let id = this.$route.params.id;
+    this.form = this.kategori[id];
+
+    let kategori_inti = localStorage.getItem("kategori_inti");
+    this.kategori_inti = JSON.parse(kategori_inti) || [
+      {
+        id: 0,
+        value: "Perkakas",
+      },
+      {
+        id: 1,
+        value: "Jaringan",
+      },
+    ];
   },
 
   methods: {
@@ -230,15 +292,28 @@ export default {
       //   })
       //   .catch((error) => (this.errors = error.response.data.errors));
 
-      this.localData[id] = this.form;
-      let categories = JSON.stringify(this.localData);
+      this.kategori[id] = this.form;
+      let kategori = JSON.stringify(this.kategori);
 
-      localStorage.setItem("categories", categories);
+      localStorage.setItem("kategori", kategori);
 
       setTimeout(() => {
         Notification.success();
         this.$router.push({ name: "category" });
       }, 1000);
+    },
+
+    addCategory() {
+      let randomId = Math.floor(Math.random() * 100);
+      this.kategori_inti.push({
+        id: randomId,
+        value: this.add_kategori,
+      });
+      this.form.kategori_inti = randomId;
+
+      localStorage.setItem("kategori_inti", JSON.stringify(this.kategori_inti));
+
+      this.modal_add_kategori = false;
     },
   },
 };

@@ -8,14 +8,15 @@
 .input-file {
     height: calc(1.5em + 0.75rem + 7px);
     width: 100%;
+    /* padding-right: 0.75rem; */
 }
 
 .input-image {
     object-fit: contain;
-    position: absolute;
+    position: relative;
     /* background-color: #5f6061; */
     z-index: 0;
-    /* left: -25%; */
+    margin-top: calc((1.5em + 0.75rem + 7px) * -1);
 }
 .input-image p {
     color: white;
@@ -38,4 +39,9 @@ img.input-image-preview {
 
 .default-image i {
     transform: scale(1.5);
+}
+
+.show {
+    background: #0009;
+    display: block !important;
 }

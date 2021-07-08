@@ -39,6 +39,7 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
+                  <th>No.</th>
                   <th>Nama Kategori</th>
                   <th>Kategori Inti</th>
                   <th>Gambar</th>
@@ -48,6 +49,7 @@
               </thead>
               <tbody>
                 <tr v-for="(category, i) in filtersearch" :key="i">
+                  <td>{{ i + 1 }}</td>
                   <td>{{ category.nama_kategori }}</td>
                   <td>{{ getKategoriInti(category.kategori_inti) }}</td>
                   <td>
@@ -90,7 +92,7 @@ export default {
   },
   data() {
     return {
-      categories: [],
+      kategori: [],
       searchTerm: "",
       text_red: "red",
 
@@ -109,7 +111,7 @@ export default {
   },
   computed: {
     filtersearch() {
-      return this.categories.filter((category) => {
+      return this.kategori.filter((category) => {
         return category.nama_kategori.match(this.searchTerm);
       });
     },
@@ -119,10 +121,23 @@ export default {
     allCategory() {
       // axios
       //   .get("/api/category/")
-      //   .then(({ data }) => (this.categories = data))
+      //   .then(({ data }) => (this.kategori = data))
       //   .catch((error) => (this.error = error));
-      let categories = localStorage.getItem("categories") || [];
-      this.categories = JSON.parse(categories);
+
+      let kategori = localStorage.getItem("kategori");
+      let kategori_inti = localStorage.getItem("kategori_inti");
+
+      this.kategori = JSON.parse(kategori) || [];
+      this.kategori_inti = JSON.parse(kategori_inti) || [
+        {
+          id: 0,
+          value: "Perkakas",
+        },
+        {
+          id: 1,
+          value: "Jaringan",
+        },
+      ];
     },
     deleteCategory(id) {
       Swal.fire({
@@ -138,7 +153,7 @@ export default {
           // axios
           //   .delete("/api/category/" + id)
           //   .then(() => {
-          //     this.categories = this.categories.filter((category) => {
+          //     this.kategori = this.kategori.filter((category) => {
           //       return category.id != id;
           //     });
           //   })
@@ -146,9 +161,9 @@ export default {
           //     this.$router.push({ name: "category" });
           //   });
 
-          let categories = this.categories.splice(id, 1);
+          let kategori = this.kategori.splice(id, 1);
 
-          localStorage.setItem("categories", JSON.stringify(categories));
+          localStorage.setItem("kategori", JSON.stringify(kategori));
 
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
