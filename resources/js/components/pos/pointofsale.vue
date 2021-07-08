@@ -25,9 +25,9 @@
               "
             >
               <h6 class="m-0 font-weight-bold text-primary">Expense Insert</h6>
-              <a class="btn btn-sm btn-info">
+              <router-link to="/store-customer" class="btn btn-sm btn-info">
                 <font color="#ffffff">Add Customer</font>
-              </a>
+              </router-link>
             </div>
 
             <div class="table-responsive" style="font-size: 12px">
@@ -139,7 +139,7 @@
                   <option
                     :value="customer.id"
                     v-for="customer in customers"
-                    :key="customer"
+                    :key="customer.id"
                   >
                     {{ customer.name }}
                   </option>

@@ -4,7 +4,7 @@
   <div>
     <div class="row">
       <router-link to="/category" class="btn btn-primary"
-        >All Category
+        >Semua Kategori
       </router-link>
     </div>
 
@@ -16,7 +16,7 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add Category</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Tambah Kategori</h1>
                   </div>
 
                   <form class="user" @submit.prevent="categoryInsert">
@@ -27,7 +27,7 @@
                             type="text"
                             class="form-control"
                             id="exampleInputFirstName"
-                            placeholder="Enter Your Category Name"
+                            placeholder="Masukkan nama kategori"
                             v-model="form.category_name"
                           />
                           <small

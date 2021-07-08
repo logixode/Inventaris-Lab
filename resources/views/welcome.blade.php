@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{{ asset('backend/img/logo/logo.png')}}" rel="icon">
-    <title>Easy Learning Invertory - Dashboard</title>
+    <title>Inventaris Lab</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}">
 
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
               <div class="sidebar-brand-icon">
                 <img src="{{ asset('backend/img/logo/logo2.png')}}">
               </div>
-              <div class="sidebar-brand-text mx-3">Easy Inventory</div>
+              <div class="sidebar-brand-text mx-3">Inventaris Lab</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
@@ -94,14 +94,14 @@
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
                 aria-expanded="true" aria-controls="collapseBootstrap2">
                 <i class="far fa-fw fa-window-maximize"></i>
-                <span>Category</span>
+                <span>Kategori</span>
               </a>
               <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
-                  <router-link class="collapse-item" to="/store-category">Add Category</router-link>
-                  <router-link class="collapse-item" to="/category">All Category</router-link>
+                  <router-link class="collapse-item" to="/store-category">Tambah Kategori</router-link>
+                  <router-link class="collapse-item" to="/category">Lihat semua Kategori</router-link>
 
                 </div>
               </div>
@@ -428,7 +428,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <img class="img-profile rounded-circle" src="{{ asset('backend/img/boy.png')}}"
                       style="max-width: 60px">
-                    <router-link to="/logout" class="ml-2 d-none d-lg-inline text-white small">Logout
+                    <router-link to="/logout" class="ml-2 d-none d-lg-inline text-white small">Keluar
                     </router-link>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -470,7 +470,7 @@
                 <span>copyright &copy; <script>
                   document.write(new Date().getFullYear());
                   </script> - developed by
-                  <b><a href="https://www.easylearningbd.com/" target="_blank">Easy Learning</a></b>
+                  <b><a href="https://www.easylearningbd.com/" target="_blank">Inventaris Lab</a></b>
                 </span>
               </div>
             </div>

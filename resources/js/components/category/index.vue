@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <router-link to="/store-category" class="btn btn-primary"
-        >Add Category
+        >Tambah Kategori
       </router-link>
     </div>
     <br />
@@ -11,7 +11,7 @@
       v-model="searchTerm"
       class="form-control"
       style="width: 300px"
-      placeholder="Search Here"
+      placeholder="Cari sesuatu..."
     />
     <div class="alert alert-danger" role="alert" v-if="error">
       {{ error }}
@@ -33,13 +33,13 @@
               justify-content-between
             "
           >
-            <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th>Category Name</th>
+                  <th>Nama Kategori</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -60,7 +60,7 @@
                     <a
                       @click="deleteCategory(category.id)"
                       class="btn btn-sm btn-danger"
-                      ><font color="#ffffff">Delete</font></a
+                      ><font color="#ffffff">Hapus</font></a
                     >
                   </td>
                 </tr>
