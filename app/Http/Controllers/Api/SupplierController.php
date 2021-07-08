@@ -31,38 +31,38 @@ class SupplierController extends Controller
   public function store(Request $request)
   {
     $validateData = $request->validate([
-      'name' => 'required|unique:suppliers|max:255',
+      'nama' => 'required|unique:suppliers|max:255',
       'email' => 'required',
-      'phone' => 'required|unique:suppliers',
+      'no_telp' => 'required|unique:suppliers',
 
     ]);
 
-    if ($request->photo) {
-      $position = strpos($request->photo, ';');
-      $sub = substr($request->photo, 0, $position);
+    if ($request->foto) {
+      $position = strpos($request->foto, ';');
+      $sub = substr($request->foto, 0, $position);
       $ext = explode('/', $sub)[1];
 
-      $name = time() . "." . $ext;
-      $img = Image::make($request->photo)->resize(240, 200);
+      $nama = time() . "." . $ext;
+      $img = Image::make($request->foto)->resize(240, 200);
       $upload_path = 'backend/supplier/';
-      $image_url = $upload_path . $name;
+      $image_url = $upload_path . $nama;
       $img->save($image_url);
 
       $supplier = new Supplier;
-      $supplier->name = $request->name;
+      $supplier->nama = $request->nama;
       $supplier->email = $request->email;
-      $supplier->phone = $request->phone;
-      $supplier->shopname = $request->shopname;
-      $supplier->address = $request->address;
-      $supplier->photo = $image_url;
+      $supplier->no_telp = $request->no_telp;
+      $supplier->nama_toko = $request->nama_toko;
+      $supplier->alamat = $request->alamat;
+      $supplier->foto = '/' . $image_url;
       $supplier->save();
     } else {
       $supplier = new Supplier;
-      $supplier->name = $request->name;
+      $supplier->nama = $request->nama;
       $supplier->email = $request->email;
-      $supplier->phone = $request->phone;
-      $supplier->shopname = $request->shopname;
-      $supplier->address = $request->address;
+      $supplier->no_telp = $request->no_telp;
+      $supplier->nama_toko = $request->nama_toko;
+      $supplier->alamat = $request->alamat;
 
       $supplier->save();
     }
@@ -92,11 +92,11 @@ class SupplierController extends Controller
   public function update(Request $request, $id)
   {
     $data = array();
-    $data['name'] = $request->name;
+    $data['nama'] = $request->nama;
     $data['email'] = $request->email;
-    $data['phone'] = $request->phone;
-    $data['shopname'] = $request->shopname;
-    $data['address'] = $request->address;
+    $data['no_telp'] = $request->no_telp;
+    $data['nama_toko'] = $request->nama_toko;
+    $data['alamat'] = $request->alamat;
 
     $image = $request->newphoto;
 
@@ -105,22 +105,22 @@ class SupplierController extends Controller
       $sub = substr($image, 0, $position);
       $ext = explode('/', $sub)[1];
 
-      $name = time() . "." . $ext;
+      $nama = time() . "." . $ext;
       $img = Image::make($image)->resize(240, 200);
       $upload_path = 'backend/supplier/';
-      $image_url = $upload_path . $name;
+      $image_url = $upload_path . $nama;
       $success = $img->save($image_url);
 
       if ($success) {
-        $data['photo'] = $image_url;
+        $data['foto'] = '/' . $image_url;
         $img = DB::table('suppliers')->where('id', $id)->first();
-        $image_path = $img->photo;
+        $image_path = $img->foto;
         $done = unlink($image_path);
         $user  = DB::table('suppliers')->where('id', $id)->update($data);
       }
     } else {
-      $oldphoto = $request->photo;
-      $data['photo'] = $oldphoto;
+      $oldphoto = $request->foto;
+      $data['foto'] = '/' . $oldphoto;
       $user = DB::table('suppliers')->where('id', $id)->update($data);
     }
   }
@@ -134,9 +134,9 @@ class SupplierController extends Controller
   public function destroy($id)
   {
     $supplier = DB::table('suppliers')->where('id', $id)->first();
-    $photo = $supplier->photo;
-    if ($photo) {
-      unlink($photo);
+    $foto = $supplier->foto;
+    if ($foto) {
+      unlink($foto);
       DB::table('suppliers')->where('id', $id)->delete();
     } else {
       DB::table('suppliers')->where('id', $id)->delete();

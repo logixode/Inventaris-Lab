@@ -220,7 +220,7 @@
                   aria-controls="profile"
                   aria-selected="false"
                   @click="subproduct(category.id)"
-                  >{{ category.category_name }}</a
+                  >{{ category.nama_kategori }}</a
                 >
               </li>
             </ul>

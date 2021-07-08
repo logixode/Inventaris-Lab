@@ -28,13 +28,13 @@
                             class="form-control"
                             id="exampleInputFirstName"
                             placeholder="Enter Your Category Name"
-                            v-model="form.category_name"
+                            v-model="form.nama_kategori"
                           />
                           <small
                             class="text-danger"
-                            v-if="errors.category_name"
+                            v-if="errors.nama_kategori"
                           >
-                            {{ errors.category_name[0] }}
+                            {{ errors.nama_kategori[0] }}
                           </small>
                         </div>
                       </div>
@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       form: {
-        category_name: "",
+        nama_kategori: "",
       },
       errors: {},
     };

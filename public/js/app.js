@@ -2336,7 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        category_name: null
+        nama_kategori: null
       },
       errors: {}
     };
@@ -2447,7 +2447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       form: {
-        category_name: ""
+        nama_kategori: ""
       },
       errors: {}
     };
@@ -2588,7 +2588,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return this.categories.filter(function (category) {
-        return category.category_name.match(_this.searchTerm);
+        return category.nama_kategori.match(_this.searchTerm);
       });
     }
   },
@@ -3310,23 +3310,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        name: null,
+        nama: null,
         email: null,
-        phone: null,
+        no_telp: null,
         sallery: null,
         address: null,
-        photo: null,
+        foto: null,
         nid: null,
         joining_date: null
       },
@@ -3345,7 +3380,7 @@ __webpack_require__.r(__webpack_exports__);
         var reader = new FileReader();
 
         reader.onload = function (event) {
-          _this.form.photo = event.target.result;
+          _this.form.foto = event.target.result;
           console.log(event.target.result);
         };
 
@@ -3355,9 +3390,9 @@ __webpack_require__.r(__webpack_exports__);
     employeeInsert: function employeeInsert() {
       var _this2 = this;
 
-      axios.post('/api/employee', this.form).then(function () {
+      axios.post("/api/employee", this.form).then(function () {
         _this2.$router.push({
-          name: 'employee'
+          name: "employee"
         });
 
         Notification.success();
@@ -3531,26 +3566,61 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_created$data$created = {
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        name: '',
-        email: '',
-        phone: '',
-        sallery: '',
-        address: '',
-        photo: '',
-        newphoto: '',
-        nid: '',
-        joining_date: ''
+        nama: null,
+        email: null,
+        no_telp: null,
+        sallery: null,
+        address: null,
+        foto: null,
+        nid: null,
+        newphoto: null,
+        joining_date: null
       },
       errors: {}
     };
@@ -3559,10 +3629,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var _this = this;
 
   var id = this.$route.params.id;
-  axios.get('/api/employee/' + id).then(function (_ref) {
+  axios.get("/api/employee/" + id).then(function (_ref) {
     var data = _ref.data;
     return _this.form = data;
-  })["catch"](console.log('error'));
+  })["catch"](console.log("error"));
 }), _defineProperty(_created$data$created, "methods", {
   onFileSelected: function onFileSelected(event) {
     var _this2 = this;
@@ -3585,9 +3655,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this3 = this;
 
     var id = this.$route.params.id;
-    axios.patch('/api/employee/' + id, this.form).then(function () {
+    axios.patch("/api/employee/" + id, this.form).then(function () {
       _this3.$router.push({
-        name: 'employee'
+        name: "employee"
       });
 
       Notification.success();
@@ -3677,18 +3747,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       employees: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {
@@ -3696,7 +3784,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return this.employees.filter(function (employee) {
-        return employee.name.match(_this.searchTerm);
+        return employee.nama.match(_this.searchTerm);
       });
     }
   },
@@ -3704,7 +3792,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allEmployee: function allEmployee() {
       var _this2 = this;
 
-      axios.get('/api/employee/').then(function (_ref) {
+      axios.get("/api/employee/").then(function (_ref) {
         var data = _ref.data;
         return _this2.employees = data;
       })["catch"]();
@@ -3713,25 +3801,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/employee/' + id).then(function () {
+          axios["delete"]("/api/employee/" + id).then(function () {
             _this3.employees = _this3.employees.filter(function (employee) {
               return employee.id != id;
             });
           })["catch"](function () {
             _this3.$router.push({
-              name: 'employee'
+              name: "employee"
             });
           });
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
     }
@@ -5588,11 +5676,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
@@ -5637,9 +5788,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProductInsert: function ProductInsert() {
       var _this2 = this;
 
-      axios.post('/api/product', this.form).then(function () {
+      axios.post("/api/product", this.form).then(function () {
         _this2.$router.push({
-          name: 'product'
+          name: "product"
         });
 
         Notification.success();
@@ -5651,11 +5802,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 }, "created", function created() {
   var _this3 = this;
 
-  axios.get('/api/category/').then(function (_ref) {
+  axios.get("/api/category/").then(function (_ref) {
     var data = _ref.data;
     return _this3.categories = data;
   });
-  axios.get('/api/supplier/').then(function (_ref2) {
+  axios.get("/api/supplier/").then(function (_ref2) {
     var data = _ref2.data;
     return _this3.suppliers = data;
   });
@@ -5981,28 +6132,91 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_created$data$created = {
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        product_name: '',
-        product_code: '',
-        category_id: '',
-        supplier_id: '',
-        root: '',
-        image: '',
-        newimage: '',
-        buying_price: '',
-        selling_price: '',
-        buying_date: '',
-        product_quantity: ''
+        product_name: "",
+        product_code: "",
+        category_id: "",
+        supplier_id: "",
+        root: "",
+        image: "",
+        newimage: "",
+        buying_price: "",
+        selling_price: "",
+        buying_date: "",
+        product_quantity: ""
       },
       errors: {},
       categories: {},
@@ -6013,17 +6227,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var _this = this;
 
   var id = this.$route.params.id;
-  axios.get('/api/product/' + id).then(function (_ref) {
+  axios.get("/api/product/" + id).then(function (_ref) {
     var data = _ref.data;
     return _this.form = data;
-  })["catch"](console.log('error')); // Category Collected 
+  })["catch"](console.log("error")); // Category Collected
 
-  axios.get('/api/category/').then(function (_ref2) {
+  axios.get("/api/category/").then(function (_ref2) {
     var data = _ref2.data;
     return _this.categories = data;
-  }); // Supplier Collected 
+  }); // Supplier Collected
 
-  axios.get('/api/supplier/').then(function (_ref3) {
+  axios.get("/api/supplier/").then(function (_ref3) {
     var data = _ref3.data;
     return _this.suppliers = data;
   });
@@ -6049,9 +6263,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this3 = this;
 
     var id = this.$route.params.id;
-    axios.patch('/api/product/' + id, this.form).then(function () {
+    axios.patch("/api/product/" + id, this.form).then(function () {
       _this3.$router.push({
-        name: 'product'
+        name: "product"
       });
 
       Notification.success();
@@ -6145,18 +6359,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       products: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {
@@ -6172,7 +6401,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allProduct: function allProduct() {
       var _this2 = this;
 
-      axios.get('/api/product/').then(function (_ref) {
+      axios.get("/api/product/").then(function (_ref) {
         var data = _ref.data;
         return _this2.products = data;
       })["catch"]();
@@ -6181,25 +6410,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/product/' + id).then(function () {
+          axios["delete"]("/api/product/" + id).then(function () {
             _this3.products = _this3.products.filter(function (product) {
               return product.id != id;
             });
           })["catch"](function () {
             _this3.$router.push({
-              name: 'product'
+              name: "product"
             });
           });
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
     }
@@ -6292,18 +6521,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       products: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {
@@ -6319,7 +6562,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allProduct: function allProduct() {
       var _this2 = this;
 
-      axios.get('/api/product/').then(function (_ref) {
+      axios.get("/api/product/").then(function (_ref) {
         var data = _ref.data;
         return _this2.products = data;
       })["catch"]();
@@ -6409,18 +6652,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       employees: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {
@@ -6428,7 +6680,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return this.employees.filter(function (employee) {
-        return employee.name.match(_this.searchTerm);
+        return employee.nama.match(_this.searchTerm);
       });
     }
   },
@@ -6436,7 +6688,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allEmployee: function allEmployee() {
       var _this2 = this;
 
-      axios.get('/api/employee/').then(function (_ref) {
+      axios.get("/api/employee/").then(function (_ref) {
         var data = _ref.data;
         return _this2.employees = data;
       })["catch"]();
@@ -7160,23 +7412,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        name: null,
+        nama: null,
         email: null,
-        phone: null,
-        shopname: null,
-        address: null,
-        photo: null
+        no_telp: null,
+        nama_toko: null,
+        alamat: null,
+        foto: null
       },
       errors: {}
     };
@@ -7193,7 +7469,7 @@ __webpack_require__.r(__webpack_exports__);
         var reader = new FileReader();
 
         reader.onload = function (event) {
-          _this.form.photo = event.target.result;
+          _this.form.foto = event.target.result;
           console.log(event.target.result);
         };
 
@@ -7203,9 +7479,9 @@ __webpack_require__.r(__webpack_exports__);
     supplierInsert: function supplierInsert() {
       var _this2 = this;
 
-      axios.post('/api/supplier', this.form).then(function () {
+      axios.post("/api/supplier", this.form).then(function () {
         _this2.$router.push({
-          name: 'supplier'
+          name: "supplier"
         });
 
         Notification.success();
@@ -7360,24 +7636,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_created$data$created = {
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        name: '',
-        email: '',
-        phone: '',
-        shopname: '',
-        address: '',
-        photo: '',
-        newphoto: ''
+        nama: "",
+        email: "",
+        no_telp: "",
+        nama_toko: "",
+        alamat: "",
+        foto: "",
+        newphoto: ""
       },
       errors: {}
     };
@@ -7386,10 +7686,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var _this = this;
 
   var id = this.$route.params.id;
-  axios.get('/api/supplier/' + id).then(function (_ref) {
+  axios.get("/api/supplier/" + id).then(function (_ref) {
     var data = _ref.data;
     return _this.form = data;
-  })["catch"](console.log('error'));
+  })["catch"](console.log("error"));
 }), _defineProperty(_created$data$created, "methods", {
   onFileSelected: function onFileSelected(event) {
     var _this2 = this;
@@ -7412,9 +7712,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this3 = this;
 
     var id = this.$route.params.id;
-    axios.patch('/api/supplier/' + id, this.form).then(function () {
+    axios.patch("/api/supplier/" + id, this.form).then(function () {
       _this3.$router.push({
-        name: 'supplier'
+        name: "supplier"
       });
 
       Notification.success();
@@ -7504,18 +7804,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       suppliers: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {
@@ -7523,7 +7841,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return this.suppliers.filter(function (supplier) {
-        return supplier.name.match(_this.searchTerm);
+        return supplier.nama.match(_this.searchTerm);
       });
     }
   },
@@ -7531,7 +7849,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allSupplier: function allSupplier() {
       var _this2 = this;
 
-      axios.get('/api/supplier/').then(function (_ref) {
+      axios.get("/api/supplier/").then(function (_ref) {
         var data = _ref.data;
         return _this2.suppliers = data;
       })["catch"]();
@@ -7540,25 +7858,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/supplier/' + id).then(function () {
+          axios["delete"]("/api/supplier/" + id).then(function () {
             _this3.suppliers = _this3.suppliers.filter(function (supplier) {
               return supplier.id != id;
             });
           })["catch"](function () {
             _this3.$router.push({
-              name: 'supplier'
+              name: "supplier"
             });
           });
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
     }
@@ -12061,7 +12379,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -12156,7 +12474,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -12175,7 +12493,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -12194,7 +12512,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -12251,7 +12569,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#em_photo{\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -51403,8 +51721,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.category_name,
-                                  expression: "form.category_name"
+                                  value: _vm.form.nama_kategori,
+                                  expression: "form.nama_kategori"
                                 }
                               ],
                               staticClass: "form-control",
@@ -51413,7 +51731,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Masukkan nama kategori"
                               },
-                              domProps: { value: _vm.form.category_name },
+                              domProps: { value: _vm.form.nama_kategori },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -51421,18 +51739,18 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "category_name",
+                                    "nama_kategori",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.category_name
+                            _vm.errors.nama_kategori
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
                                     "\n                          " +
-                                      _vm._s(_vm.errors.category_name[0]) +
+                                      _vm._s(_vm.errors.nama_kategori[0]) +
                                       "\n                        "
                                   )
                                 ])
@@ -51547,8 +51865,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.category_name,
-                                  expression: "form.category_name"
+                                  value: _vm.form.nama_kategori,
+                                  expression: "form.nama_kategori"
                                 }
                               ],
                               staticClass: "form-control",
@@ -51557,7 +51875,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Category Name"
                               },
-                              domProps: { value: _vm.form.category_name },
+                              domProps: { value: _vm.form.nama_kategori },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -51565,18 +51883,18 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "category_name",
+                                    "nama_kategori",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.category_name
+                            _vm.errors.nama_kategori
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
                                     "\n                          " +
-                                      _vm._s(_vm.errors.category_name[0]) +
+                                      _vm._s(_vm.errors.nama_kategori[0]) +
                                       "\n                        "
                                   )
                                 ])
@@ -51713,7 +52031,7 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(category) {
                     return _c("tr", { key: category.id }, [
-                      _c("td", [_vm._v(_vm._s(category.category_name))]),
+                      _c("td", [_vm._v(_vm._s(category.nama_kategori))]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -52690,7 +53008,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/employee" } },
-          [_vm._v("All Employee ")]
+          [_vm._v("All Employee\n    ")]
         )
       ],
       1
@@ -52726,8 +53044,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.name,
-                                  expression: "form.name"
+                                  value: _vm.form.nama,
+                                  expression: "form.nama"
                                 }
                               ],
                               staticClass: "form-control",
@@ -52736,7 +53054,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Full Name"
                               },
-                              domProps: { value: _vm.form.name },
+                              domProps: { value: _vm.form.nama },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -52744,16 +53062,20 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "name",
+                                    "nama",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.name
+                            _vm.errors.nama
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nama[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -52792,7 +53114,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52836,7 +53160,9 @@ var render = function() {
                             _vm.errors.address
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.address[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52876,7 +53202,9 @@ var render = function() {
                             _vm.errors.sallery
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.sallery[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.sallery[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52920,9 +53248,9 @@ var render = function() {
                             _vm.errors.joining_date
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.joining_date[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -52957,7 +53285,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.nid
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.nid[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nid[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ])
@@ -52972,8 +53304,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.phone,
-                                  expression: "form.phone"
+                                  value: _vm.form.no_telp,
+                                  expression: "form.no_telp"
                                 }
                               ],
                               staticClass: "form-control",
@@ -52982,7 +53314,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your phone Number"
                               },
-                              domProps: { value: _vm.form.phone },
+                              domProps: { value: _vm.form.no_telp },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -52990,17 +53322,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "phone",
+                                    "no_telp",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.phone
+                            _vm.errors.no_telp
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.no_telp[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53019,10 +53353,12 @@ var render = function() {
                               on: { change: _vm.onFileSelected }
                             }),
                             _vm._v(" "),
-                            _vm.errors.photo
+                            _vm.errors.foto
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.foto[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -53040,7 +53376,7 @@ var render = function() {
                           _c("div", { staticClass: "col-md-6" }, [
                             _c("img", {
                               staticStyle: { height: "40px", width: "40px" },
-                              attrs: { src: _vm.form.photo }
+                              attrs: { src: _vm.form.foto }
                             })
                           ])
                         ])
@@ -53083,7 +53419,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
@@ -53117,7 +53453,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/employee" } },
-          [_vm._v("All Employee ")]
+          [_vm._v("All Employee\n    ")]
         )
       ],
       1
@@ -53180,7 +53516,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.name
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.name[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -53219,7 +53559,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53263,7 +53605,9 @@ var render = function() {
                             _vm.errors.address
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.address[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53303,7 +53647,9 @@ var render = function() {
                             _vm.errors.sallery
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.sallery[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.sallery[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53347,9 +53693,9 @@ var render = function() {
                             _vm.errors.joining_date
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.joining_date[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53384,7 +53730,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.nid
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.nid[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nid[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ])
@@ -53399,8 +53749,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.phone,
-                                  expression: "form.phone"
+                                  value: _vm.form.no_telp,
+                                  expression: "form.no_telp"
                                 }
                               ],
                               staticClass: "form-control",
@@ -53409,7 +53759,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your phone Number"
                               },
-                              domProps: { value: _vm.form.phone },
+                              domProps: { value: _vm.form.no_telp },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -53417,17 +53767,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "phone",
+                                    "no_telp",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.phone
+                            _vm.errors.no_telp
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.no_telp[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -53446,10 +53798,12 @@ var render = function() {
                               on: { change: _vm.onFileSelected }
                             }),
                             _vm._v(" "),
-                            _vm.errors.photo
+                            _vm.errors.foto
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.foto[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -53467,7 +53821,7 @@ var render = function() {
                           _c("div", { staticClass: "col-md-6" }, [
                             _c("img", {
                               staticStyle: { height: "40px", width: "40px" },
-                              attrs: { src: _vm.form.photo }
+                              attrs: { src: _vm.form.foto }
                             })
                           ])
                         ])
@@ -53498,7 +53852,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v(" Employee Update")
+        _vm._v("Employee Update")
       ])
     ])
   },
@@ -53510,7 +53864,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Update")]
+        [_vm._v("\n                      Update\n                    ")]
       )
     ])
   }
@@ -53544,7 +53898,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-employee" } },
-          [_vm._v("Add Employee ")]
+          [_vm._v("Add Employee\n    ")]
         )
       ],
       1
@@ -53593,15 +53947,15 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(employee) {
                     return _c("tr", { key: employee.id }, [
-                      _c("td", [_vm._v(" " + _vm._s(employee.name) + " ")]),
+                      _c("td", [_vm._v(_vm._s(employee.nama))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
-                          attrs: { src: employee.photo, id: "em_photo" }
+                          attrs: { src: employee.foto, id: "em_photo" }
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.phone))]),
+                      _c("td", [_vm._v(_vm._s(employee.no_telp))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(employee.sallery))]),
                       _vm._v(" "),
@@ -53667,7 +54021,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -53682,11 +54036,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Nama")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Photo")]),
+        _c("th", [_vm._v("Foto")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
+        _c("th", [_vm._v("No. Telp")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sallery")]),
         _vm._v(" "),
@@ -55736,7 +56090,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(category.category_name))]
+                          [_vm._v(_vm._s(category.nama_kategori))]
                         )
                       ]
                     )
@@ -56149,7 +56503,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/product" } },
-          [_vm._v("All Product ")]
+          [_vm._v("All Product\n    ")]
         )
       ],
       1
@@ -56219,9 +56573,9 @@ var render = function() {
                             _vm.errors.product_name
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_name[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56267,9 +56621,9 @@ var render = function() {
                             _vm.errors.product_code
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_code[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56323,8 +56677,17 @@ var render = function() {
                               _vm._l(_vm.categories, function(category) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: category.id } },
-                                  [_vm._v(_vm._s(category.category_name))]
+                                  {
+                                    key: category.id,
+                                    domProps: { value: category.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(category.nama_kategori) +
+                                        "\n                          "
+                                    )
+                                  ]
                                 )
                               }),
                               0
@@ -56375,8 +56738,17 @@ var render = function() {
                               _vm._l(_vm.suppliers, function(supplier) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: supplier.id } },
-                                  [_vm._v(_vm._s(supplier.name))]
+                                  {
+                                    key: supplier.id,
+                                    domProps: { value: supplier.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(supplier.nama) +
+                                        "\n                          "
+                                    )
+                                  ]
                                 )
                               }),
                               0
@@ -56425,7 +56797,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.root
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.root[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.root[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -56469,9 +56845,9 @@ var render = function() {
                             _vm.errors.buying_price
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.buying_price[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56516,9 +56892,9 @@ var render = function() {
                             _vm.errors.selling_price
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.selling_price[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56567,9 +56943,9 @@ var render = function() {
                             _vm.errors.buying_date
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.buying_date[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56615,9 +56991,9 @@ var render = function() {
                             _vm.errors.product_quantity
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_quantity[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -56637,7 +57013,9 @@ var render = function() {
                             _vm.errors.image
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.image[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.image[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -56698,7 +57076,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
@@ -56882,7 +57260,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/product" } },
-          [_vm._v("All Product ")]
+          [_vm._v("All Product\n    ")]
         )
       ],
       1
@@ -56952,9 +57330,9 @@ var render = function() {
                             _vm.errors.product_name
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_name[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57000,9 +57378,9 @@ var render = function() {
                             _vm.errors.product_code
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_code[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57056,8 +57434,17 @@ var render = function() {
                               _vm._l(_vm.categories, function(category) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: category.id } },
-                                  [_vm._v(_vm._s(category.category_name))]
+                                  {
+                                    key: category.id,
+                                    domProps: { value: category.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(category.nama_kategori) +
+                                        "\n                          "
+                                    )
+                                  ]
                                 )
                               }),
                               0
@@ -57108,8 +57495,17 @@ var render = function() {
                               _vm._l(_vm.suppliers, function(supplier) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: supplier.id } },
-                                  [_vm._v(_vm._s(supplier.name))]
+                                  {
+                                    key: supplier.id,
+                                    domProps: { value: supplier.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(supplier.nama) +
+                                        "\n                          "
+                                    )
+                                  ]
                                 )
                               }),
                               0
@@ -57158,7 +57554,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.root
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.root[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.root[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -57202,9 +57602,9 @@ var render = function() {
                             _vm.errors.buying_price
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.buying_price[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57249,9 +57649,9 @@ var render = function() {
                             _vm.errors.selling_price
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.selling_price[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57300,9 +57700,9 @@ var render = function() {
                             _vm.errors.buying_date
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.buying_date[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57348,9 +57748,9 @@ var render = function() {
                             _vm.errors.product_quantity
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.product_quantity[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -57370,7 +57770,9 @@ var render = function() {
                             _vm.errors.image
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.image[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.image[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -57419,7 +57821,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v(" Product Update")
+        _vm._v("Product Update")
       ])
     ])
   },
@@ -57431,7 +57833,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Update")]
+        [_vm._v("\n                      Update\n                    ")]
       )
     ])
   }
@@ -57465,7 +57867,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-product" } },
-          [_vm._v("Add Product ")]
+          [_vm._v("Add Product\n    ")]
         )
       ],
       1
@@ -57514,13 +57916,9 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(product) {
                     return _c("tr", { key: product.id }, [
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_name) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(product.product_name))]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_code) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(product.product_code))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
@@ -57528,7 +57926,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.category_name))]),
+                      _c("td", [_vm._v(_vm._s(product.nama_kategori))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(product.buying_price))]),
                       _vm._v(" "),
@@ -57596,7 +57994,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -57659,7 +58057,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-product" } },
-          [_vm._v("Add Product ")]
+          [_vm._v("Add Product\n    ")]
         )
       ],
       1
@@ -57708,13 +58106,9 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(product) {
                     return _c("tr", { key: product.id }, [
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_name) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(product.product_name))]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(product.product_code) + " ")
-                      ]),
+                      _c("td", [_vm._v(_vm._s(product.product_code))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
@@ -57722,7 +58116,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.category_name))]),
+                      _c("td", [_vm._v(_vm._s(product.nama_kategori))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(product.buying_price))]),
                       _vm._v(" "),
@@ -57782,7 +58176,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -57845,7 +58239,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-employee" } },
-          [_vm._v("Add Employee ")]
+          [_vm._v("Add Employee\n    ")]
         )
       ],
       1
@@ -57894,15 +58288,15 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(employee) {
                     return _c("tr", { key: employee.id }, [
-                      _c("td", [_vm._v(" " + _vm._s(employee.name) + " ")]),
+                      _c("td", [_vm._v(_vm._s(employee.nama))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
-                          attrs: { src: employee.photo, id: "em_photo" }
+                          attrs: { src: employee.foto, id: "em_photo" }
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.phone))]),
+                      _c("td", [_vm._v(_vm._s(employee.no_telp))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(employee.sallery))]),
                       _vm._v(" "),
@@ -57950,7 +58344,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -57965,11 +58359,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Nama")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Photo")]),
+        _c("th", [_vm._v("Foto")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
+        _c("th", [_vm._v("No. Telp")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sallery")]),
         _vm._v(" "),
@@ -59062,7 +59456,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/supplier" } },
-          [_vm._v("All Supplier ")]
+          [_vm._v("All Supplier\n    ")]
         )
       ],
       1
@@ -59098,8 +59492,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.name,
-                                  expression: "form.name"
+                                  value: _vm.form.nama,
+                                  expression: "form.nama"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59108,7 +59502,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Full Name"
                               },
-                              domProps: { value: _vm.form.name },
+                              domProps: { value: _vm.form.nama },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59116,16 +59510,20 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "name",
+                                    "nama",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.name
+                            _vm.errors.nama
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nama[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -59164,7 +59562,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59180,8 +59580,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.address,
-                                  expression: "form.address"
+                                  value: _vm.form.alamat,
+                                  expression: "form.alamat"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59190,7 +59590,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Address"
                               },
-                              domProps: { value: _vm.form.address },
+                              domProps: { value: _vm.form.alamat },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59198,17 +59598,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "address",
+                                    "alamat",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.address
+                            _vm.errors.alamat
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.alamat[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59220,8 +59622,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.shopname,
-                                  expression: "form.shopname"
+                                  value: _vm.form.nama_toko,
+                                  expression: "form.nama_toko"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59230,7 +59632,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Shop Name"
                               },
-                              domProps: { value: _vm.form.shopname },
+                              domProps: { value: _vm.form.nama_toko },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59238,17 +59640,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "shopname",
+                                    "nama_toko",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.shopname
+                            _vm.errors.nama_toko
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.shopname[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nama_toko[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59264,8 +59668,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.phone,
-                                  expression: "form.phone"
+                                  value: _vm.form.no_telp,
+                                  expression: "form.no_telp"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59274,7 +59678,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your phone Number"
                               },
-                              domProps: { value: _vm.form.phone },
+                              domProps: { value: _vm.form.no_telp },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59282,17 +59686,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "phone",
+                                    "no_telp",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.phone
+                            _vm.errors.no_telp
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.no_telp[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59311,10 +59717,12 @@ var render = function() {
                               on: { change: _vm.onFileSelected }
                             }),
                             _vm._v(" "),
-                            _vm.errors.photo
+                            _vm.errors.foto
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.foto[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -59332,7 +59740,7 @@ var render = function() {
                           _c("div", { staticClass: "col-md-6" }, [
                             _c("img", {
                               staticStyle: { height: "40px", width: "40px" },
-                              attrs: { src: _vm.form.photo }
+                              attrs: { src: _vm.form.foto }
                             })
                           ])
                         ])
@@ -59375,7 +59783,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
@@ -59409,7 +59817,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/supplier" } },
-          [_vm._v("All Supplier ")]
+          [_vm._v("All Supplier\n    ")]
         )
       ],
       1
@@ -59445,8 +59853,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.name,
-                                  expression: "form.name"
+                                  value: _vm.form.nama,
+                                  expression: "form.nama"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59455,7 +59863,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Full Name"
                               },
-                              domProps: { value: _vm.form.name },
+                              domProps: { value: _vm.form.nama },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59463,16 +59871,20 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "name",
+                                    "nama",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.name
+                            _vm.errors.nama
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nama[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -59511,7 +59923,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59527,8 +59941,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.address,
-                                  expression: "form.address"
+                                  value: _vm.form.alamat,
+                                  expression: "form.alamat"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59537,7 +59951,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Address"
                               },
-                              domProps: { value: _vm.form.address },
+                              domProps: { value: _vm.form.alamat },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59545,17 +59959,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "address",
+                                    "alamat",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.address
+                            _vm.errors.alamat
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.alamat[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59567,8 +59983,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.shopname,
-                                  expression: "form.shopname"
+                                  value: _vm.form.nama_toko,
+                                  expression: "form.nama_toko"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59577,7 +59993,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your Sallery"
                               },
-                              domProps: { value: _vm.form.shopname },
+                              domProps: { value: _vm.form.nama_toko },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59585,17 +60001,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "shopname",
+                                    "nama_toko",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.shopname
+                            _vm.errors.nama_toko
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.shopname[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.nama_toko[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59611,8 +60029,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.phone,
-                                  expression: "form.phone"
+                                  value: _vm.form.no_telp,
+                                  expression: "form.no_telp"
                                 }
                               ],
                               staticClass: "form-control",
@@ -59621,7 +60039,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Your phone Number"
                               },
-                              domProps: { value: _vm.form.phone },
+                              domProps: { value: _vm.form.no_telp },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -59629,17 +60047,19 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "phone",
+                                    "no_telp",
                                     $event.target.value
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
-                            _vm.errors.phone
+                            _vm.errors.no_telp
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.no_telp[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -59658,10 +60078,12 @@ var render = function() {
                               on: { change: _vm.onFileSelected }
                             }),
                             _vm._v(" "),
-                            _vm.errors.photo
+                            _vm.errors.foto
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.foto[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e(),
@@ -59679,7 +60101,7 @@ var render = function() {
                           _c("div", { staticClass: "col-md-6" }, [
                             _c("img", {
                               staticStyle: { height: "40px", width: "40px" },
-                              attrs: { src: _vm.form.photo }
+                              attrs: { src: _vm.form.foto }
                             })
                           ])
                         ])
@@ -59710,7 +60132,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v(" Supplier Update")
+        _vm._v("Supplier Update")
       ])
     ])
   },
@@ -59722,7 +60144,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Update")]
+        [_vm._v("\n                      Update\n                    ")]
       )
     ])
   }
@@ -59756,7 +60178,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/store-supplier" } },
-          [_vm._v("Add Supplier ")]
+          [_vm._v("Add Supplier\n    ")]
         )
       ],
       1
@@ -59805,17 +60227,17 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.filtersearch, function(supplier) {
                     return _c("tr", { key: supplier.id }, [
-                      _c("td", [_vm._v(" " + _vm._s(supplier.name) + " ")]),
+                      _c("td", [_vm._v(_vm._s(supplier.nama))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
-                          attrs: { src: supplier.photo, id: "em_photo" }
+                          attrs: { src: supplier.foto, id: "em_photo" }
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(supplier.phone))]),
+                      _c("td", [_vm._v(_vm._s(supplier.no_telp))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(supplier.shopname))]),
+                      _c("td", [_vm._v(_vm._s(supplier.nama_toko))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(supplier.email))]),
                       _vm._v(" "),
@@ -59879,7 +60301,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "card-header py-3 d-flex flex-row align-items-center justify-content-between"
+          "\n            card-header\n            py-3\n            d-flex\n            flex-row\n            align-items-center\n            justify-content-between\n          "
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
@@ -59894,13 +60316,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Nama")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Photo")]),
+        _c("th", [_vm._v("Foto")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
+        _c("th", [_vm._v("No. Telp")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Shop Name")]),
+        _c("th", [_vm._v("Nama Toko")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
