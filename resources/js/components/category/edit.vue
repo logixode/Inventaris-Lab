@@ -212,12 +212,12 @@ export default {
       if (file.size > 1048770) {
         Notification.image_validation();
       } else {
-        // let reader = new FileReader();
-        // reader.onload = (event) => {
-        //   this.form.gambar = event.target.result;
-        //   // console.log(event.target.result);
-        // };
-        // reader.readAsDataURL(file);
+        let reader = new FileReader();
+        reader.onload = (event) => {
+          this.form.gambar = event.target.result;
+          // console.log(event.target.result);
+        };
+        reader.readAsDataURL(file);
       }
     },
     categoryUpdate() {

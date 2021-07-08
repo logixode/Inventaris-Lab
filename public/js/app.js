@@ -2711,20 +2711,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onFileSelected: function onFileSelected(event) {
+      var _this = this;
+
       var file = event.target.files[0];
 
       if (file.size > 1048770) {
         Notification.image_validation();
-      } else {// let reader = new FileReader();
-        // reader.onload = (event) => {
-        //   this.form.gambar = event.target.result;
-        //   // console.log(event.target.result);
-        // };
-        // reader.readAsDataURL(file);
+      } else {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this.form.gambar = event.target.result; // console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
       }
     },
     categoryUpdate: function categoryUpdate() {
-      var _this = this;
+      var _this2 = this;
 
       var id = this.$route.params.id; // axios
       //   .patch("/api/category/" + id, this.form)
@@ -2740,7 +2744,7 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         Notification.success();
 
-        _this.$router.push({
+        _this2.$router.push({
           name: "category"
         });
       }, 1000);
