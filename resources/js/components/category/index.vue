@@ -51,7 +51,8 @@
                 <tr v-for="(category, i) in filtersearch" :key="i">
                   <td>{{ i + 1 }}</td>
                   <td>{{ category.nama_kategori }}</td>
-                  <td>{{ getKategoriInti(category.kategori_inti) }}</td>
+                  <td>{{ category.data_relation.kategori_inti }}</td>
+                  <!-- <td>{{ category.id_kategori_inti }}</td> -->
                   <td>
                     <img :src="category.gambar" alt="" height="50px" />
                   </td>
@@ -61,13 +62,15 @@
                     <router-link
                       :to="{
                         name: 'edit-category',
-                        params: { id: i },
+                        params: { id: category.id },
                       }"
                       class="btn btn-sm btn-primary"
                       >Edit</router-link
                     >
 
-                    <a @click="deleteCategory(i)" class="btn btn-sm btn-danger"
+                    <a
+                      @click="deleteCategory(category.id)"
+                      class="btn btn-sm btn-danger"
                       ><font color="#ffffff">Hapus</font></a
                     >
                   </td>
@@ -89,6 +92,7 @@ export default {
     if (!User.loggedIn()) {
       this.$router.push({ name: "/" });
     }
+    this.allCategory();
   },
   data() {
     return {
@@ -96,16 +100,6 @@ export default {
       searchTerm: "",
       text_red: "red",
 
-      kategori_inti: [
-        {
-          id: 0,
-          value: "Perkakas",
-        },
-        {
-          id: 1,
-          value: "Jaringan",
-        },
-      ],
       error: "",
     };
   },
@@ -118,26 +112,9 @@ export default {
   },
 
   methods: {
-    allCategory() {
-      // axios
-      //   .get("/api/category/")
-      //   .then(({ data }) => (this.kategori = data))
-      //   .catch((error) => (this.error = error));
-
-      let kategori = localStorage.getItem("kategori");
-      let kategori_inti = localStorage.getItem("kategori_inti");
-
-      this.kategori = JSON.parse(kategori) || [];
-      this.kategori_inti = JSON.parse(kategori_inti) || [
-        {
-          id: 0,
-          value: "Perkakas",
-        },
-        {
-          id: 1,
-          value: "Jaringan",
-        },
-      ];
+    async allCategory() {
+      let { data } = await axios.get("/api/category/");
+      this.kategori = data;
     },
     deleteCategory(id) {
       Swal.fire({
@@ -148,22 +125,11 @@ export default {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.value) {
-          // axios
-          //   .delete("/api/category/" + id)
-          //   .then(() => {
-          //     this.kategori = this.kategori.filter((category) => {
-          //       return category.id != id;
-          //     });
-          //   })
-          //   .catch(() => {
-          //     this.$router.push({ name: "category" });
-          //   });
-
-          let kategori = this.kategori.splice(id, 1);
-
-          localStorage.setItem("kategori", JSON.stringify(kategori));
+          await axios.delete("/api/category/" + id);
+          this.kategori = this.kategori.filter((category) => category.id != id);
+          this.$router.push({ name: "category" });
 
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
@@ -173,9 +139,6 @@ export default {
       let i = this.kategori_inti.findIndex((x) => x.id === val);
       return this.kategori_inti[i].value;
     },
-  },
-  created() {
-    this.allCategory();
   },
 };
 </script>

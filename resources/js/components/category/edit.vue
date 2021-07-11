@@ -90,7 +90,7 @@
                               <select
                                 class="form-control"
                                 id="exampleFormControlSelect1"
-                                v-model="form.kategori_inti"
+                                v-model="form.id_kategori_inti"
                                 required
                               >
                                 <option selected disabled :value="null">
@@ -101,7 +101,7 @@
                                   :value="data.id"
                                   :key="data.id"
                                 >
-                                  {{ data.value }}
+                                  {{ data.kategori_inti }}
                                 </option>
                               </select>
                               <small
@@ -198,7 +198,7 @@
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">
-                        Update
+                        Submit
                       </button>
                     </div>
                   </form>
@@ -219,15 +219,17 @@
 
 <script type="text/javascript">
 export default {
-  created() {
+  async created() {
+    let id = this.$route.params.id;
     if (!User.loggedIn()) {
       this.$router.push({ name: "/" });
     }
 
-    // axios
-    //   .get("/api/category/" + id)
-    //   .then(({ data }) => (this.form = data))
-    //   .catch(console.log("error"));
+    let kategori = await axios.get("/api/category/" + id);
+    this.form = kategori.data;
+    let kategori_inti = await axios.get("/api/kategori_inti");
+    this.kategori_inti = kategori_inti.data;
+    this.old_photo = this.form.gambar;
   },
 
   data() {
@@ -236,6 +238,7 @@ export default {
         nama_kategori: "",
         keterangan: "",
         gambar: "",
+        new_photo: false,
         kategori_inti: null,
       },
       kategori_inti: [],
@@ -247,26 +250,7 @@ export default {
       kategori: [],
     };
   },
-
-  mounted() {
-    let kategori = localStorage.getItem("kategori") || [];
-    this.kategori = JSON.parse(kategori);
-
-    let id = this.$route.params.id;
-    this.form = this.kategori[id];
-
-    let kategori_inti = localStorage.getItem("kategori_inti");
-    this.kategori_inti = JSON.parse(kategori_inti) || [
-      {
-        id: 0,
-        value: "Perkakas",
-      },
-      {
-        id: 1,
-        value: "Jaringan",
-      },
-    ];
-  },
+  computed: {},
 
   methods: {
     onFileSelected(event) {
@@ -277,30 +261,23 @@ export default {
         let reader = new FileReader();
         reader.onload = (event) => {
           this.form.gambar = event.target.result;
-          // console.log(event.target.result);
+          this.form.new_photo = true;
         };
         reader.readAsDataURL(file);
       }
     },
-    categoryUpdate() {
+    async categoryUpdate() {
       let id = this.$route.params.id;
-      // axios
-      //   .patch("/api/category/" + id, this.form)
-      //   .then(() => {
-      //     this.$router.push({ name: "category" });
-      //     Notification.success();
-      //   })
-      //   .catch((error) => (this.errors = error.response.data.errors));
+      let error;
 
-      this.kategori[id] = this.form;
-      let kategori = JSON.stringify(this.kategori);
-
-      localStorage.setItem("kategori", kategori);
-
-      setTimeout(() => {
-        Notification.success();
+      await axios.patch("/api/category/" + id, this.form).catch((err) => {
+        error = err;
+        this.errors = err.response.data.errors;
+      });
+      if (!error) {
         this.$router.push({ name: "category" });
-      }, 1000);
+        Notification.success();
+      }
     },
 
     addCategory() {

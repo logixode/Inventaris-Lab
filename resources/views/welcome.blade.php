@@ -60,7 +60,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Employee</span>
               </a>
-              <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -77,7 +77,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Suppliers</span>
               </a>
-              <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap1" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -97,7 +97,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Kategori</span>
               </a>
-              <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap2" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -119,7 +119,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Products</span>
               </a>
-              <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap3" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -141,7 +141,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Expense</span>
               </a>
-              <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap4" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -162,7 +162,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Customers</span>
               </a>
-              <div id="collapseBootstrap44" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap44" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -184,7 +184,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Salary</span>
               </a>
-              <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap5" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
@@ -205,7 +205,7 @@
                 <i class="far fa-fw fa-window-maximize"></i>
                 <span>Orders</span>
               </a>
-              <div id="collapseBootstrap51" class="collapse" aria-labelledby="headingBootstrap"
+              <div id="collapseBootstrap51" class="collapse transparent" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 

@@ -42,10 +42,10 @@ class EmployeeController extends Controller
       $sub = substr($request->foto, 0, $position);
       $ext = explode('/', $sub)[1];
 
-      $nama = time() . "." . $ext;
+      $nama_file = time() . "." . $ext;
       $img = Image::make($request->foto)->resize(240, 200);
       $upload_path = 'backend/employee/';
-      $image_url = $upload_path . $nama;
+      $image_url = $upload_path . $nama_file;
       $img->save($image_url);
 
       $employee = new Employee;
@@ -110,17 +110,18 @@ class EmployeeController extends Controller
       $sub = substr($image, 0, $position);
       $ext = explode('/', $sub)[1];
 
-      $nama = time() . "." . $ext;
+      $nama_file = time() . "." . $ext;
       $img = Image::make($image)->resize(240, 200);
       $upload_path = 'backend/employee/';
-      $image_url = $upload_path . $nama;
+      $image_url = $upload_path . $nama_file;
       $success = $img->save($image_url);
 
       if ($success) {
         $data['foto'] = '/' . $image_url;
         $img = DB::table('employees')->where('id', $id)->first();
         $image_path = $img->foto;
-        $done = unlink($image_path);
+        $done =
+          unlink(public_path($image_path));
         $user  = DB::table('employees')->where('id', $id)->update($data);
       }
     } else {
@@ -141,7 +142,7 @@ class EmployeeController extends Controller
     $employee = DB::table('employees')->where('id', $id)->first();
     $foto = $employee->foto;
     if ($foto) {
-      unlink($foto);
+      unlink(public_path($foto));
       DB::table('employees')->where('id', $id)->delete();
     } else {
       DB::table('employees')->where('id', $id)->delete();

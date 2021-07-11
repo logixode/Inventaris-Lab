@@ -88,7 +88,7 @@
                               <select
                                 class="form-control"
                                 id="exampleFormControlSelect1"
-                                v-model="form.kategori_inti"
+                                v-model="form.id_kategori_inti"
                                 required
                               >
                                 <option selected disabled :value="null">
@@ -99,7 +99,7 @@
                                   :value="data.id"
                                   :key="data.id"
                                 >
-                                  {{ data.value }}
+                                  {{ data.kategori_inti }}
                                 </option>
                               </select>
                               <small
@@ -217,33 +217,35 @@
 
 <script type="text/javascript">
 export default {
-  created() {
+  async created() {
     if (!User.loggedIn()) {
       this.$router.push({ name: "/" });
     }
+
+    let { data } = await axios.get("/api/kategori_inti");
+    this.kategori_inti = data;
   },
   mounted() {
-    let kategori = localStorage.getItem("kategori");
-    let kategori_inti = localStorage.getItem("kategori_inti");
-
-    this.kategori = JSON.parse(kategori) || [];
-    this.kategori_inti = JSON.parse(kategori_inti) || [
-      {
-        id: 0,
-        value: "Perkakas",
-      },
-      {
-        id: 1,
-        value: "Jaringan",
-      },
-    ];
+    // let kategori = localStorage.getItem("kategori");
+    // let kategori_inti = localStorage.getItem("kategori_inti");
+    // this.kategori = JSON.parse(kategori) || [];
+    // this.kategori_inti = JSON.parse(kategori_inti) || [
+    //   {
+    //     id: 0,
+    //     value: "Perkakas",
+    //   },
+    //   {
+    //     id: 1,
+    //     value: "Jaringan",
+    //   },
+    // ];
   },
 
   data() {
     return {
       form: {
         nama_kategori: "",
-        kategori_inti: null,
+        id_kategori_inti: null,
         keterangan: "",
         gambar: "",
       },
@@ -271,24 +273,28 @@ export default {
         reader.readAsDataURL(file);
       }
     },
-    categoryInsert() {
-      // axios
-      //   .post("/api/category", this.form)
-      //   .then(() => {
-      //     this.$router.push({ name: "category" });
-      //     Notification.success();
-      //   })
-      //   .catch((error) => (this.errors = error.response.data.errors));
-
-      this.kategori.push(this.form);
-      let kategori = JSON.stringify(this.kategori);
-
-      localStorage.setItem("kategori", kategori);
-
-      setTimeout(() => {
+    async categoryInsert() {
+      let error;
+      await axios.post("/api/category", this.form).catch((err) => {
+        error = err;
+        this.errors = err.response.data.errors;
+      });
+      if (!error) {
         Notification.success();
-        this.$router.push({ name: "category" });
-      }, 1000);
+        setTimeout(() => {
+          this.$router.push({ name: "category" });
+        }, 500);
+      }
+
+      // this.kategori.push(this.form);
+      // let kategori = JSON.stringify(this.kategori);
+
+      // localStorage.setItem("kategori", kategori);
+
+      // setTimeout(() => {
+      //   Notification.success();
+      //   this.$router.push({ name: "category" });
+      // }, 1000);
     },
     addCategory() {
       let randomId = Math.floor(Math.random() * 100);
