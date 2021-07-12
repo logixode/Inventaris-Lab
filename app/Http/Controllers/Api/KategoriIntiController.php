@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\KategoriInti;
 use Illuminate\Http\Request;
+use DB;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class KategoriIntiController extends Controller
 {
@@ -20,16 +22,6 @@ class KategoriIntiController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
    * Store a newly created resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
@@ -37,29 +29,15 @@ class KategoriIntiController extends Controller
    */
   public function store(Request $request)
   {
-    //
-  }
+    $request->validate([
+      'kategori_inti' => 'required|unique:kategori_intis|max:75',
+    ]);
+    $data = new KategoriInti([
+      'kategori_inti' => $request->get('kategori_inti')
+    ]);
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\KategoriInti  $kategoriInti
-   * @return \Illuminate\Http\Response
-   */
-  public function show(KategoriInti $kategoriInti)
-  {
-    //
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\KategoriInti  $kategoriInti
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(KategoriInti $kategoriInti)
-  {
-    //
+    $data->save();
+    return $data;
   }
 
   /**
@@ -71,7 +49,14 @@ class KategoriIntiController extends Controller
    */
   public function update(Request $request, KategoriInti $kategoriInti)
   {
-    //
+    $request->validate([
+      'kategori_inti' => 'required|unique:kategori_intis|max:75',
+    ]);
+    $data = KategoriInti::where('id', '=', $request->get('id'))->firstOrFail();
+    $data->kategori_inti = $request->get('kategori_inti');
+    $data->save();
+
+    return $request;
   }
 
   /**
@@ -82,6 +67,13 @@ class KategoriIntiController extends Controller
    */
   public function destroy(KategoriInti $kategoriInti)
   {
-    //
+    try {
+      DB::table('kategori_intis')->where('id', $kategoriInti->id)->delete();
+    } catch (\Exception  $exception) {
+      return response()->json(['error' => 'Data tidak dapat dihapus karena sedang digunakan'], 500);
+
+      // throw new HttpException(500, $exception->getMessage());
+    }
+    return $kategoriInti;
   }
 }

@@ -6,44 +6,16 @@
       </router-link>
     </div>
 
-    <div class="modal fade show" v-if="modal_add_kategori" id="exampleModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Tambah Kategori Inti
-            </h5>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Kategori Inti Baru:</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="recipient-name"
-                  v-model="add_kategori"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              @click="modal_add_kategori = false"
-            >
-              Close
-            </button>
-            <button type="button" @click="addCategory" class="btn btn-primary">
-              Send message
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <edit-category
+      :modal_edit_kategori="modal_edit_kategori"
+      :kategori_inti="kategori_inti"
+      @modalClosed="modal_edit_kategori = $event"
+    />
+    <add-category
+      :modal_add_kategori="modal_add_kategori"
+      @addCategory="addCategoryChild"
+      @modalClosed="modal_add_kategori = $event"
+    />
 
     <div class="row justify-content-center">
       <div class="col-xl-12 col-lg-12 col-md-12">
@@ -104,9 +76,9 @@
                               </select>
                               <small
                                 class="text-danger"
-                                v-if="errors.kategori_inti"
+                                v-if="errors.id_kategori_inti"
                               >
-                                {{ errors.kategori_inti[0] }}
+                                {{ errors.id_kategori_inti[0] }}
                               </small>
                             </div>
                             <div class="pl-2">
@@ -115,7 +87,16 @@
                                 class="btn btn-primary h-100"
                                 @click="modal_add_kategori = true"
                               >
-                                +
+                                <i class="fas fa-plus fa-fw"></i>
+                              </button>
+                            </div>
+                            <div class="pl-2">
+                              <button
+                                type="button"
+                                class="btn btn-warning h-100"
+                                @click="modal_edit_kategori = true"
+                              >
+                                <i class="fas fa-edit fa-fw"></i>
                               </button>
                             </div>
                           </div>
@@ -251,8 +232,8 @@ export default {
       },
       kategori_inti: [],
 
-      add_kategori: "",
       modal_add_kategori: false,
+      modal_edit_kategori: false,
 
       errors: {},
       kategori: [],
@@ -285,28 +266,11 @@ export default {
           this.$router.push({ name: "category" });
         }, 500);
       }
-
-      // this.kategori.push(this.form);
-      // let kategori = JSON.stringify(this.kategori);
-
-      // localStorage.setItem("kategori", kategori);
-
-      // setTimeout(() => {
-      //   Notification.success();
-      //   this.$router.push({ name: "category" });
-      // }, 1000);
     },
-    addCategory() {
-      let randomId = Math.floor(Math.random() * 100);
-      this.kategori_inti.push({
-        id: randomId,
-        value: this.add_kategori,
-      });
-      this.form.kategori_inti = randomId;
-
-      localStorage.setItem("kategori_inti", JSON.stringify(this.kategori_inti));
-
-      this.modal_add_kategori = false;
+    addCategoryChild(val) {
+      this.modal_add_kategori = val.modal_add_kategori;
+      this.kategori_inti.push(val.kategori_inti);
+      this.form.id_kategori_inti = val.kategori_inti.id;
     },
   },
 };

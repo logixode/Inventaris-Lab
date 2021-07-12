@@ -2265,10 +2265,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/create.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/create.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2301,6 +2301,316 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["modal_add_kategori"],
+  data: function data() {
+    return {
+      errors: {}
+    };
+  },
+  methods: {
+    addCategory: function addCategory() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var error, _yield$axios$post$cat, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.post("/api/kategori_inti", {
+                  kategori_inti: _this.add_kategori
+                })["catch"](function (err) {
+                  error = err;
+                  _this.errors = err.response.data.errors;
+                });
+
+              case 2:
+                _yield$axios$post$cat = _context.sent;
+                data = _yield$axios$post$cat.data;
+
+                if (!error) {
+                  _this.$emit("addCategory", {
+                    kategori_inti: data,
+                    modal_add_kategori: false
+                  });
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["modal_edit_kategori", "kategori_inti"],
+  data: function data() {
+    return {
+      form: {
+        id: null,
+        kategori_inti: ""
+      },
+      form_active: null,
+      errors: {},
+      delete_error: ""
+    };
+  },
+  methods: {
+    editCategory: function editCategory(id) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var error, _yield$axios$put$catc, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.put("/api/kategori_inti/" + id, {
+                  kategori_inti: _this.add_kategori
+                })["catch"](function (err) {
+                  error = err;
+                  _this.errors = err.response.data.errors;
+                });
+
+              case 2:
+                _yield$axios$put$catc = _context.sent;
+                data = _yield$axios$put$catc.data;
+
+                if (!error) {
+                  _this.$emit("editCategory", {
+                    kategori_inti: data,
+                    modal_edit_kategori: false
+                  });
+                }
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editData: function editData(i) {
+      this.form = this.kategori_inti[i];
+      this.form_active = i;
+    },
+    saveChanges: function saveChanges(i) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var error, _yield$axios$patch$ca, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.form_active = null;
+                _context2.next = 3;
+                return axios.patch("/api/kategori_inti/" + _this2.kategori_inti[i].id, _this2.form)["catch"](function (err) {
+                  error = err;
+                  _this2.errors = err.response.data.errors;
+                });
+
+              case 3:
+                _yield$axios$patch$ca = _context2.sent;
+                data = _yield$axios$patch$ca.data;
+
+                if (!error) {
+                  _this2.kategori_inti[i].kategori_inti = data.kategori_inti;
+                  Notification.success();
+                  console.log(_this2.kategori_inti[i].id, "edited");
+                }
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    deleteData: function deleteData(i) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var error;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.delete_error = "";
+                _context3.next = 3;
+                return axios["delete"]("/api/kategori_inti/" + _this3.kategori_inti[i].id)["catch"](function (err) {
+                  error = err;
+                  _this3.delete_error = err.response.data.error;
+                });
+
+              case 3:
+                if (!error) {
+                  _this3.kategori_inti.splice(i, 1);
+
+                  Notification.success();
+                  console.log(_this3.kategori_inti[i].id, "deleted");
+                }
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/create.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/create.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2555,8 +2865,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         gambar: ""
       },
       kategori_inti: [],
-      add_kategori: "",
       modal_add_kategori: false,
+      modal_edit_kategori: false,
       errors: {},
       kategori: []
     };
@@ -2602,14 +2912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       name: "category"
                     });
                   }, 500);
-                } // this.kategori.push(this.form);
-                // let kategori = JSON.stringify(this.kategori);
-                // localStorage.setItem("kategori", kategori);
-                // setTimeout(() => {
-                //   Notification.success();
-                //   this.$router.push({ name: "category" });
-                // }, 1000);
-
+                }
 
               case 3:
               case "end":
@@ -2619,15 +2922,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    addCategory: function addCategory() {
-      var randomId = Math.floor(Math.random() * 100);
-      this.kategori_inti.push({
-        id: randomId,
-        value: this.add_kategori
-      });
-      this.form.kategori_inti = randomId;
-      localStorage.setItem("kategori_inti", JSON.stringify(this.kategori_inti));
-      this.modal_add_kategori = false;
+    addCategoryChild: function addCategoryChild(val) {
+      this.modal_add_kategori = val.modal_add_kategori;
+      this.kategori_inti.push(val.kategori_inti);
+      this.form.id_kategori_inti = val.kategori_inti.id;
     }
   }
 });
@@ -2651,25 +2949,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2922,6 +3201,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       kategori_inti: [],
       add_kategori: "",
       modal_add_kategori: false,
+      modal_edit_kategori: false,
       errors: {},
       kategori: []
     };
@@ -2988,6 +3268,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.form.kategori_inti = randomId;
       localStorage.setItem("kategori_inti", JSON.stringify(this.kategori_inti));
       this.modal_add_kategori = false;
+    },
+    addCategoryChild: function addCategoryChild(val) {
+      this.modal_add_kategori = val.modal_add_kategori;
+      this.kategori_inti.push(val.kategori_inti);
+      this.form.id_kategori_inti = val.kategori_inti.id;
     }
   }
 });
@@ -53030,6 +53315,332 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.modal_add_kategori
+    ? _c(
+        "div",
+        { staticClass: "modal fade show", attrs: { id: "exampleModal" } },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "recipient-name" }
+                      },
+                      [_vm._v("Kategori Inti Baru:")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.add_kategori,
+                          expression: "add_kategori"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "recipient-name" },
+                      domProps: { value: _vm.add_kategori },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.add_kategori = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.kategori_inti
+                      ? _c("small", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.errors.kategori_inti[0]) +
+                              "\n            "
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("modalClosed", false)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Close\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addCategory }
+                  },
+                  [_vm._v("\n          Send message\n        ")]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("\n          Tambah Kategori Inti\n        ")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.modal_edit_kategori
+    ? _c(
+        "div",
+        { staticClass: "modal fade show", attrs: { id: "exampleModal" } },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                [
+                  _vm._l(_vm.kategori_inti, function(data, i) {
+                    return _c(
+                      "div",
+                      {
+                        key: i,
+                        staticClass: "w-100 d-flex my-2 p-1 bg-gray rounded"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "\n              flex-grow-1\n              pl-3\n              align-self-center align-items-center\n              d-flex\n            "
+                          },
+                          [
+                            _c("span", [_vm._v(_vm._s(i + 1) + ". ")]),
+                            _vm._v(" "),
+                            _vm.form_active != i
+                              ? _c("span", [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(data.kategori_inti) +
+                                      "\n            "
+                                  )
+                                ])
+                              : _vm.form_active == i
+                              ? _c("div", { staticClass: "ml-2 w-100" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.kategori_inti,
+                                        expression: "form.kategori_inti"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      id: "exampleInputFirstName",
+                                      placeholder: "Masukkan Kategori",
+                                      required: ""
+                                    },
+                                    domProps: { value: _vm.form.kategori_inti },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "kategori_inti",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.kategori_inti
+                                    ? _c(
+                                        "small",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(
+                                                _vm.errors.kategori_inti[0]
+                                              ) +
+                                              "\n              "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ])
+                              : _vm._e()
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.form_active == i
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary ml-3",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.saveChanges(i)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-check fa-fw" })]
+                            )
+                          : _c("div", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-warning",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editData(i)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fas fa-edit fa-fw" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger ml-2",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteData(i)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fas fa-trash fa-fw" })]
+                              )
+                            ])
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.delete_error
+                    ? _c("small", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n          " +
+                            _vm._s(_vm.delete_error) +
+                            "\n        "
+                        )
+                      ])
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("modalClosed", false)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Close\n        ")]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Edit Kategori Inti")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/create.vue?vue&type=template&id=e8689d9c&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/create.vue?vue&type=template&id=e8689d9c& ***!
@@ -53045,436 +53656,405 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: "/category" } },
-          [_vm._v("All Category\n    ")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _vm.modal_add_kategori
-      ? _c(
-          "div",
-          { staticClass: "modal fade show", attrs: { id: "exampleModal" } },
-          [
-            _c("div", { staticClass: "modal-dialog" }, [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("form", [
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-form-label",
-                          attrs: { for: "recipient-name" }
-                        },
-                        [_vm._v("Kategori Inti Baru:")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.add_kategori,
-                            expression: "add_kategori"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "recipient-name" },
-                        domProps: { value: _vm.add_kategori },
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "btn btn-primary", attrs: { to: "/category" } },
+            [_vm._v("All Category\n    ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("edit-category", {
+        attrs: {
+          modal_edit_kategori: _vm.modal_edit_kategori,
+          kategori_inti: _vm.kategori_inti
+        },
+        on: {
+          modalClosed: function($event) {
+            _vm.modal_edit_kategori = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("add-category", {
+        attrs: { modal_add_kategori: _vm.modal_add_kategori },
+        on: {
+          addCategory: _vm.addCategoryChild,
+          modalClosed: function($event) {
+            _vm.modal_add_kategori = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-xl-12 col-lg-12 col-md-12" }, [
+          _c("div", { staticClass: "card shadow-sm my-5" }, [
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12" }, [
+                  _c("div", { staticClass: "login-form" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        staticClass: "user",
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.add_kategori = $event.target.value
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.categoryInsert.apply(null, arguments)
                           }
                         }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.modal_add_kategori = false
-                        }
-                      }
-                    },
-                    [_vm._v("\n            Close\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.addCategory }
-                    },
-                    [_vm._v("\n            Send message\n          ")]
-                  )
-                ])
-              ])
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-xl-12 col-lg-12 col-md-12" }, [
-        _c("div", { staticClass: "card shadow-sm my-5" }, [
-          _c("div", { staticClass: "card-body p-0" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-12" }, [
-                _c("div", { staticClass: "login-form" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      staticClass: "user",
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.categoryInsert.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(2),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.nama_kategori,
-                                  expression: "form.nama_kategori"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "exampleInputFirstName",
-                                placeholder: "Masukkan Nama Kategori",
-                                required: ""
-                              },
-                              domProps: { value: _vm.form.nama_kategori },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "nama_kategori",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.nama_kategori
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.nama_kategori[0]) +
-                                      "\n                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(3),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "d-flex" }, [
-                              _c("div", { staticClass: "flex-grow-1" }, [
-                                _c(
-                                  "select",
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "form-row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
                                   {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.id_kategori_inti,
-                                        expression: "form.id_kategori_inti"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      id: "exampleFormControlSelect1",
-                                      required: ""
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "id_kategori_inti",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      }
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.nama_kategori,
+                                    expression: "form.nama_kategori"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "exampleInputFirstName",
+                                  placeholder: "Masukkan Nama Kategori",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.form.nama_kategori },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: { selected: "", disabled: "" },
-                                        domProps: { value: null }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "nama_kategori",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.nama_kategori
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.nama_kategori[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "d-flex" }, [
+                                _c("div", { staticClass: "flex-grow-1" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.id_kategori_inti,
+                                          expression: "form.id_kategori_inti"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        id: "exampleFormControlSelect1",
+                                        required: ""
                                       },
-                                      [
-                                        _vm._v(
-                                          "\n                                Pilih Kategori Inti\n                              "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.kategori_inti, function(data) {
-                                      return _c(
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_kategori_inti",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
                                         "option",
                                         {
-                                          key: data.id,
-                                          domProps: { value: data.id }
+                                          attrs: { selected: "", disabled: "" },
+                                          domProps: { value: null }
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                " +
-                                              _vm._s(data.kategori_inti) +
-                                              "\n                              "
+                                            "\n                                Pilih Kategori Inti\n                              "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.kategori_inti, function(data) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: data.id,
+                                            domProps: { value: data.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(data.kategori_inti) +
+                                                "\n                              "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.errors.id_kategori_inti
+                                    ? _c(
+                                        "small",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                              " +
+                                              _vm._s(
+                                                _vm.errors.id_kategori_inti[0]
+                                              ) +
+                                              "\n                            "
                                           )
                                         ]
                                       )
-                                    })
-                                  ],
-                                  2
-                                ),
+                                    : _vm._e()
+                                ]),
                                 _vm._v(" "),
-                                _vm.errors.kategori_inti
-                                  ? _c(
-                                      "small",
-                                      { staticClass: "text-danger" },
-                                      [
-                                        _vm._v(
-                                          "\n                              " +
-                                            _vm._s(
-                                              _vm.errors.kategori_inti[0]
-                                            ) +
-                                            "\n                            "
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "pl-2" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-primary h-100",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.modal_add_kategori = true
+                                _c("div", { staticClass: "pl-2" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary h-100",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.modal_add_kategori = true
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                              +\n                            "
-                                    )
-                                  ]
-                                )
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-plus fa-fw"
+                                      })
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "pl-2" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-warning h-100",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.modal_edit_kategori = true
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-edit fa-fw"
+                                      })
+                                    ]
+                                  )
+                                ])
                               ])
                             ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(4),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.keterangan,
-                                  expression: "form.keterangan"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "exampleInputFirstName1",
-                                placeholder: "Masukkan keterangan",
-                                required: ""
-                              },
-                              domProps: { value: _vm.form.keterangan },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "form-row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(3),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.keterangan,
+                                    expression: "form.keterangan"
                                   }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "keterangan",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "exampleInputFirstName1",
+                                  placeholder: "Masukkan keterangan",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.form.keterangan },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "keterangan",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            }),
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.keterangan
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.keterangan[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]),
                             _vm._v(" "),
-                            _vm.errors.keterangan
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.keterangan[0]) +
-                                      "\n                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(5),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "d-flex justify-content-between" },
-                              [
-                                _c("div", { staticClass: "flex-grow-1 mr-2" }, [
-                                  _c("input", {
-                                    staticClass: "input-file w-full",
-                                    attrs: {
-                                      type: "file",
-                                      accept: "image/*",
-                                      id: "customFile"
-                                    },
-                                    on: { change: _vm.onFileSelected }
-                                  }),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(4),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "d-flex justify-content-between"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex-grow-1 mr-2" },
+                                    [
+                                      _c("input", {
+                                        staticClass: "input-file w-full",
+                                        attrs: {
+                                          type: "file",
+                                          accept: "image/*",
+                                          id: "customFile"
+                                        },
+                                        on: { change: _vm.onFileSelected }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm._m(5)
+                                    ]
+                                  ),
                                   _vm._v(" "),
-                                  _vm._m(6)
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "d-flex justify-content-end" },
-                                  [
-                                    _vm.form.gambar
-                                      ? _c("img", {
-                                          staticClass:
-                                            "input-image-preview bg-gray-dark",
-                                          attrs: {
-                                            src: _vm.form.gambar,
-                                            alt: "",
-                                            srcset: ""
-                                          }
-                                        })
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    !_vm.form.gambar
-                                      ? _c(
-                                          "div",
-                                          {
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-flex justify-content-end"
+                                    },
+                                    [
+                                      _vm.form.gambar
+                                        ? _c("img", {
                                             staticClass:
-                                              "input-image-preview default-image",
+                                              "input-image-preview bg-gray-dark",
                                             attrs: {
-                                              src: "/",
+                                              src: _vm.form.gambar,
                                               alt: "",
                                               srcset: ""
                                             }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-image fa-fw"
-                                            })
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm.errors.gambar
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.gambar[0]) +
-                                      "\n                        "
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      !_vm.form.gambar
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "input-image-preview default-image",
+                                              attrs: {
+                                                src: "/",
+                                                alt: "",
+                                                srcset: ""
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-image fa-fw"
+                                              })
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
                                   )
-                                ])
-                              : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.errors.gambar
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.gambar[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(7)
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-center" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-center" })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(6)
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" })
+                  ])
                 ])
               ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("\n            Tambah Kategori Inti\n          ")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53564,436 +54144,405 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: "/category" } },
-          [_vm._v("Semua Kategori\n    ")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _vm.modal_add_kategori
-      ? _c(
-          "div",
-          { staticClass: "modal fade show", attrs: { id: "exampleModal" } },
-          [
-            _c("div", { staticClass: "modal-dialog" }, [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("form", [
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-form-label",
-                          attrs: { for: "recipient-name" }
-                        },
-                        [_vm._v("Kategori Inti Baru:")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.add_kategori,
-                            expression: "add_kategori"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "recipient-name" },
-                        domProps: { value: _vm.add_kategori },
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "btn btn-primary", attrs: { to: "/category" } },
+            [_vm._v("Semua Kategori\n    ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("edit-category", {
+        attrs: {
+          modal_edit_kategori: _vm.modal_edit_kategori,
+          kategori_inti: _vm.kategori_inti
+        },
+        on: {
+          modalClosed: function($event) {
+            _vm.modal_edit_kategori = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("add-category", {
+        attrs: { modal_add_kategori: _vm.modal_add_kategori },
+        on: {
+          addCategory: _vm.addCategoryChild,
+          modalClosed: function($event) {
+            _vm.modal_add_kategori = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-xl-12 col-lg-12 col-md-12" }, [
+          _c("div", { staticClass: "card shadow-sm my-5" }, [
+            _c("div", { staticClass: "card-body p-0" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12" }, [
+                  _c("div", { staticClass: "login-form" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        staticClass: "user",
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.add_kategori = $event.target.value
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.categoryUpdate.apply(null, arguments)
                           }
                         }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.modal_add_kategori = false
-                        }
-                      }
-                    },
-                    [_vm._v("\n            Close\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.addCategory }
-                    },
-                    [_vm._v("\n            Send message\n          ")]
-                  )
-                ])
-              ])
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-xl-12 col-lg-12 col-md-12" }, [
-        _c("div", { staticClass: "card shadow-sm my-5" }, [
-          _c("div", { staticClass: "card-body p-0" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-12" }, [
-                _c("div", { staticClass: "login-form" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      staticClass: "user",
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.categoryUpdate.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(2),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.nama_kategori,
-                                  expression: "form.nama_kategori"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "exampleInputFirstName",
-                                placeholder: "Masukkan Nama Kategori",
-                                required: ""
-                              },
-                              domProps: { value: _vm.form.nama_kategori },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "nama_kategori",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.nama_kategori
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.nama_kategori[0]) +
-                                      "\n                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(3),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "d-flex" }, [
-                              _c("div", { staticClass: "flex-grow-1" }, [
-                                _c(
-                                  "select",
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "form-row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
                                   {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.id_kategori_inti,
-                                        expression: "form.id_kategori_inti"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      id: "exampleFormControlSelect1",
-                                      required: ""
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "id_kategori_inti",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      }
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.nama_kategori,
+                                    expression: "form.nama_kategori"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "exampleInputFirstName",
+                                  placeholder: "Masukkan Nama Kategori",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.form.nama_kategori },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: { selected: "", disabled: "" },
-                                        domProps: { value: null }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "nama_kategori",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.nama_kategori
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.nama_kategori[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "d-flex" }, [
+                                _c("div", { staticClass: "flex-grow-1" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.id_kategori_inti,
+                                          expression: "form.id_kategori_inti"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        id: "exampleFormControlSelect1",
+                                        required: ""
                                       },
-                                      [
-                                        _vm._v(
-                                          "\n                                Pilih Kategori Inti\n                              "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.kategori_inti, function(data) {
-                                      return _c(
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_kategori_inti",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
                                         "option",
                                         {
-                                          key: data.id,
-                                          domProps: { value: data.id }
+                                          attrs: { selected: "", disabled: "" },
+                                          domProps: { value: null }
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                " +
-                                              _vm._s(data.kategori_inti) +
-                                              "\n                              "
+                                            "\n                                Pilih Kategori Inti\n                              "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.kategori_inti, function(data) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: data.id,
+                                            domProps: { value: data.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(data.kategori_inti) +
+                                                "\n                              "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.errors.id_kategori_inti
+                                    ? _c(
+                                        "small",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                              " +
+                                              _vm._s(
+                                                _vm.errors.id_kategori_inti[0]
+                                              ) +
+                                              "\n                            "
                                           )
                                         ]
                                       )
-                                    })
-                                  ],
-                                  2
-                                ),
+                                    : _vm._e()
+                                ]),
                                 _vm._v(" "),
-                                _vm.errors.kategori_inti
-                                  ? _c(
-                                      "small",
-                                      { staticClass: "text-danger" },
-                                      [
-                                        _vm._v(
-                                          "\n                              " +
-                                            _vm._s(
-                                              _vm.errors.kategori_inti[0]
-                                            ) +
-                                            "\n                            "
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "pl-2" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-primary h-100",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.modal_add_kategori = true
+                                _c("div", { staticClass: "pl-2" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary h-100",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.modal_add_kategori = true
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                              +\n                            "
-                                    )
-                                  ]
-                                )
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-plus fa-fw"
+                                      })
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "pl-2" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-warning h-100",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.modal_edit_kategori = true
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-edit fa-fw"
+                                      })
+                                    ]
+                                  )
+                                ])
                               ])
                             ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "form-row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(4),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.keterangan,
-                                  expression: "form.keterangan"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "exampleInputFirstName1",
-                                placeholder: "Masukkan keterangan",
-                                required: ""
-                              },
-                              domProps: { value: _vm.form.keterangan },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "form-row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(3),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.keterangan,
+                                    expression: "form.keterangan"
                                   }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "keterangan",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "exampleInputFirstName1",
+                                  placeholder: "Masukkan keterangan",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.form.keterangan },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "keterangan",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            }),
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.keterangan
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.keterangan[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]),
                             _vm._v(" "),
-                            _vm.errors.keterangan
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.keterangan[0]) +
-                                      "\n                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _vm._m(5),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "d-flex justify-content-between" },
-                              [
-                                _c("div", { staticClass: "flex-grow-1 mr-2" }, [
-                                  _c("input", {
-                                    staticClass: "input-file w-full",
-                                    attrs: {
-                                      type: "file",
-                                      accept: "image/*",
-                                      id: "customFile"
-                                    },
-                                    on: { change: _vm.onFileSelected }
-                                  }),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._m(4),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "d-flex justify-content-between"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex-grow-1 mr-2" },
+                                    [
+                                      _c("input", {
+                                        staticClass: "input-file w-full",
+                                        attrs: {
+                                          type: "file",
+                                          accept: "image/*",
+                                          id: "customFile"
+                                        },
+                                        on: { change: _vm.onFileSelected }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm._m(5)
+                                    ]
+                                  ),
                                   _vm._v(" "),
-                                  _vm._m(6)
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "d-flex justify-content-end" },
-                                  [
-                                    _vm.form.gambar
-                                      ? _c("img", {
-                                          staticClass:
-                                            "input-image-preview bg-gray-dark",
-                                          attrs: {
-                                            src: _vm.form.gambar,
-                                            alt: "",
-                                            srcset: ""
-                                          }
-                                        })
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    !_vm.form.gambar
-                                      ? _c(
-                                          "div",
-                                          {
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-flex justify-content-end"
+                                    },
+                                    [
+                                      _vm.form.gambar
+                                        ? _c("img", {
                                             staticClass:
-                                              "input-image-preview default-image",
+                                              "input-image-preview bg-gray-dark",
                                             attrs: {
-                                              src: "/",
+                                              src: _vm.form.gambar,
                                               alt: "",
                                               srcset: ""
                                             }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-image fa-fw"
-                                            })
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm.errors.gambar
-                              ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(_vm.errors.gambar[0]) +
-                                      "\n                        "
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      !_vm.form.gambar
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "input-image-preview default-image",
+                                              attrs: {
+                                                src: "/",
+                                                alt: "",
+                                                srcset: ""
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-image fa-fw"
+                                              })
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
                                   )
-                                ])
-                              : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.errors.gambar
+                                ? _c("small", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.errors.gambar[0]) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(7)
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-center" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-center" })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(6)
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" })
+                  ])
                 ])
               ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("\n            Tambah Kategori Inti\n          ")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -78171,30 +78720,32 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 window.User = _Helpers_User__WEBPACK_IMPORTED_MODULE_3__["default"]; // Import Notification Class
 
 
-window.Notification = _Helpers_Notification__WEBPACK_IMPORTED_MODULE_4__["default"]; // Sweet Alert start 
+window.Notification = _Helpers_Notification__WEBPACK_IMPORTED_MODULE_4__["default"]; // Sweet Alert start
 
 
 window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a;
 var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.mixin({
   toast: true,
-  position: 'top-end',
+  position: "top-end",
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   onOpen: function onOpen(toast) {
-    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.stopTimer);
-    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.resumeTimer);
+    toast.addEventListener("mouseenter", sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.stopTimer);
+    toast.addEventListener("mouseleave", sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.resumeTimer);
   }
 });
-window.Toast = Toast; // Sweet Alert End 
+window.Toast = Toast; // Sweet Alert End
 
 window.Reload = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("add-category", __webpack_require__(/*! ./components/category/AddCategory.vue */ "./resources/js/components/category/AddCategory.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("edit-category", __webpack_require__(/*! ./components/category/EditCategory.vue */ "./resources/js/components/category/EditCategory.vue")["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__["routes"],
-  mode: 'history'
+  mode: "history"
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app',
+  el: "#app",
   router: router
 });
 
@@ -78521,6 +79072,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_template_id_e8907422___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_template_id_e8907422___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/category/AddCategory.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/category/AddCategory.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCategory.vue?vue&type=template&id=42f3b2d9& */ "./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9&");
+/* harmony import */ var _AddCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddCategory.vue?vue&type=script&lang=js& */ "./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/category/AddCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddCategory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/AddCategory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddCategory.vue?vue&type=template&id=42f3b2d9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/AddCategory.vue?vue&type=template&id=42f3b2d9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddCategory_vue_vue_type_template_id_42f3b2d9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/category/EditCategory.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/category/EditCategory.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditCategory.vue?vue&type=template&id=007f94fe& */ "./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe&");
+/* harmony import */ var _EditCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditCategory.vue?vue&type=script&lang=js& */ "./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/category/EditCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditCategory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/EditCategory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditCategory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditCategory.vue?vue&type=template&id=007f94fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/EditCategory.vue?vue&type=template&id=007f94fe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditCategory_vue_vue_type_template_id_007f94fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

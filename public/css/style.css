@@ -49,3 +49,7 @@ img.input-image-preview {
 .transparent {
     background: transparent;
 }
+
+.bg-gray {
+    background-color: #eeeeee99;
+}
