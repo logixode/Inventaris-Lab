@@ -31,7 +31,7 @@
                   <form class="user" @submit.prevent="categoryInsert">
                     <div class="form-group">
                       <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                           <label for="exampleFormControlTextarea1"
                             ><b>Nama Kategori </b></label
                           >
@@ -49,10 +49,8 @@
                           >
                             {{ errors.nama_kategori[0] }}
                           </small>
-                        </div>
 
-                        <div class="col-md-6">
-                          <label for="exampleFormControlTextarea1">
+                          <label for="exampleFormControlTextarea1" class="mt-3">
                             <b>Kategori Inti </b>
                           </label>
                           <div class="d-flex">
@@ -100,15 +98,10 @@
                               </button>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-row">
-                        <div class="col-md-6">
-                          <label for="exampleFormControlTextarea1"
-                            ><b>Keterangan </b></label
-                          >
+
+                          <label for="exampleFormControlTextarea1" class="mt-3">
+                            <b>Keterangan </b>
+                            </label>
                           <input
                             type="text"
                             class="form-control"
@@ -122,12 +115,30 @@
                           </small>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <label for="exampleFormControlTextarea1">
                             <b>Gambar </b>
                           </label>
+                          <div class="d-flex justify-content-center">
+                              <img
+                                v-if="form.gambar"
+                                :src="form.gambar"
+                                alt=""
+                                srcset=""
+                                class="input-image-preview bg-gray-dark"
+                              />
+                              <div
+                                v-if="!form.gambar"
+                                src="/"
+                                alt=""
+                                srcset=""
+                                class="input-image-preview default-image"
+                              >
+                                <i class="fas fa-image fa-fw"></i>
+                              </div>
+                            </div>
                           <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 mr-2">
+                            <div class="w-full mt-1">
                               <input
                                 type="file"
                                 accept="image/*"
@@ -149,24 +160,7 @@
                               </div>
                             </div>
 
-                            <div class="d-flex justify-content-end">
-                              <img
-                                v-if="form.gambar"
-                                :src="form.gambar"
-                                alt=""
-                                srcset=""
-                                class="input-image-preview bg-gray-dark"
-                              />
-                              <div
-                                v-if="!form.gambar"
-                                src="/"
-                                alt=""
-                                srcset=""
-                                class="input-image-preview default-image"
-                              >
-                                <i class="fas fa-image fa-fw"></i>
-                              </div>
-                            </div>
+                            
                           </div>
                           <small class="text-danger" v-if="errors.gambar">
                             {{ errors.gambar[0] }}
@@ -174,6 +168,7 @@
                         </div>
                       </div>
                     </div>
+                    
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">

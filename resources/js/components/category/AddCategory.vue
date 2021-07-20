@@ -31,10 +31,10 @@
             class="btn btn-secondary"
             @click="$emit('modalClosed', false)"
           >
-            Close
+            Tutup
           </button>
           <button type="button" @click="addCategory" class="btn btn-primary">
-            Send message
+            Tambah
           </button>
         </div>
       </div>
