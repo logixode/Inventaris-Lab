@@ -64,7 +64,7 @@
             class="btn btn-secondary"
             @click="$emit('modalClosed', false)"
           >
-            Close
+            Tutup
           </button>
         </div>
       </div>

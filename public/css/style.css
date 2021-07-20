@@ -22,13 +22,13 @@
     color: white;
 }
 img.input-image-preview {
-    height: calc(1.5em + 0.75rem + 7px);
+    height: 11rem;
     /* transform: translate(50%); */
 }
 
 .default-image {
-    height: calc(1.5em + 0.75rem + 7px);
-    width: calc(1.5em + 0.75rem + 7px);
+    height: 11rem;
+    width: 100%;
     border: 1px solid #aaa;
     border-radius: 5px;
     background-color: #ddd;
