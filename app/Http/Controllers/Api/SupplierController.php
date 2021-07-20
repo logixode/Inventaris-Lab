@@ -115,7 +115,7 @@ class SupplierController extends Controller
         $data['foto'] = '/' . $image_url;
         $img = DB::table('suppliers')->where('id', $id)->first();
         $image_path = $img->foto;
-        $done = unlink($image_path);
+        $done = unlink(public_path($image_path));
         $user  = DB::table('suppliers')->where('id', $id)->update($data);
       }
     } else {
@@ -136,7 +136,7 @@ class SupplierController extends Controller
     $supplier = DB::table('suppliers')->where('id', $id)->first();
     $foto = $supplier->foto;
     if ($foto) {
-      unlink($foto);
+      unlink(public_path($foto));
       DB::table('suppliers')->where('id', $id)->delete();
     } else {
       DB::table('suppliers')->where('id', $id)->delete();

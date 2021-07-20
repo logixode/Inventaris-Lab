@@ -1,0 +1,55 @@
+.input-file {
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.input-image,
+.input-file {
+    height: calc(1.5em + 0.75rem + 7px);
+    width: 100%;
+    /* padding-right: 0.75rem; */
+}
+
+.input-image {
+    object-fit: contain;
+    position: relative;
+    /* background-color: #5f6061; */
+    z-index: 0;
+    margin-top: calc((1.5em + 0.75rem + 7px) * -1);
+}
+.input-image p {
+    color: white;
+}
+img.input-image-preview {
+    height: calc(1.5em + 0.75rem + 7px);
+    /* transform: translate(50%); */
+}
+
+.default-image {
+    height: calc(1.5em + 0.75rem + 7px);
+    width: calc(1.5em + 0.75rem + 7px);
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+.default-image i {
+    transform: scale(1.5);
+}
+
+.show {
+    background: #0009;
+    display: block !important;
+}
+
+.transparent {
+    background: transparent;
+}
+
+.bg-gray {
+    background-color: #eeeeee99;
+}

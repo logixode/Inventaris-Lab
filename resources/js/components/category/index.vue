@@ -39,13 +39,24 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
+                  <th>No.</th>
                   <th>Nama Kategori</th>
+                  <th>Kategori Inti</th>
+                  <th>Gambar</th>
+                  <th>Keterangan</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="category in filtersearch" :key="category.id">
+                <tr v-for="(category, i) in filtersearch" :key="i">
+                  <td>{{ i + 1 }}</td>
                   <td>{{ category.nama_kategori }}</td>
+                  <td>{{ category.data_relation.kategori_inti }}</td>
+                  <!-- <td>{{ category.id_kategori_inti }}</td> -->
+                  <td>
+                    <img :src="category.gambar" alt="" height="50px" />
+                  </td>
+                  <td>{{ category.keterangan }}</td>
 
                   <td>
                     <router-link
@@ -81,29 +92,29 @@ export default {
     if (!User.loggedIn()) {
       this.$router.push({ name: "/" });
     }
+    this.allCategory();
   },
   data() {
     return {
-      categories: [],
+      kategori: [],
       searchTerm: "",
       text_red: "red",
+
       error: "",
     };
   },
   computed: {
     filtersearch() {
-      return this.categories.filter((category) => {
+      return this.kategori.filter((category) => {
         return category.nama_kategori.match(this.searchTerm);
       });
     },
   },
 
   methods: {
-    allCategory() {
-      axios
-        .get("/api/category/")
-        .then(({ data }) => (this.categories = data))
-        .catch((error) => (this.error = error));
+    async allCategory() {
+      let { data } = await axios.get("/api/category/");
+      this.kategori = data;
     },
     deleteCategory(id) {
       Swal.fire({
@@ -114,25 +125,20 @@ export default {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.value) {
-          axios
-            .delete("/api/category/" + id)
-            .then(() => {
-              this.categories = this.categories.filter((category) => {
-                return category.id != id;
-              });
-            })
-            .catch(() => {
-              this.$router.push({ name: "category" });
-            });
+          await axios.delete("/api/category/" + id);
+          this.kategori = this.kategori.filter((category) => category.id != id);
+          this.$router.push({ name: "category" });
+
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
     },
-  },
-  created() {
-    this.allCategory();
+    getKategoriInti(val) {
+      let i = this.kategori_inti.findIndex((x) => x.id === val);
+      return this.kategori_inti[i].value;
+    },
   },
 };
 </script>

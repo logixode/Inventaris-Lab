@@ -16,6 +16,10 @@ class CreateCategoriesTable extends Migration
     Schema::create('categories', function (Blueprint $table) {
       $table->id('id');
       $table->string('nama_kategori');
+      $table->unsignedInteger('id_kategori_inti');
+      $table->string('gambar')->nullable();
+      $table->string('keterangan');
+      $table->foreign('id_kategori_inti')->references('id')->on('kategori_intis');
       $table->timestamps();
     });
   }

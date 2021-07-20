@@ -19,9 +19,13 @@ Route::group([
 Route::apiResource('/employee', 'Api\EmployeeController');
 Route::apiResource('/supplier', 'Api\SupplierController');
 Route::apiResource('/category', 'Api\CategoryController');
+Route::apiResource('/kategori_inti', 'Api\KategoriIntiController');
 Route::apiResource('/product', 'Api\ProductController');
 Route::apiResource('/expense', 'Api\ExpenseController');
 Route::apiResource('/customer', 'Api\CustomerController');
+
+// Route::get('/kategori_inti', 'Api\KategoriIntiController@index');
+// Route::post('/kategori_inti', 'Api\KategoriIntiController@store');
 
 Route::Post('/salary/paid/{id}', 'Api\SalaryController@Paid');
 Route::Get('/salary', 'Api\SalaryController@AllSalary');
