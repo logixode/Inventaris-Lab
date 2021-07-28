@@ -12,12 +12,14 @@ Langkah-langkah intalasi :
 1. Buat database
 2. Copy file .env.example menjadi .env lalu sesuaikan user, password, dan database
 3. Kemudian eksekusi perintah berikut di terminal/command prompt
-   `$ composer update`
-   `$ npm install`
-   `$ npm run dev`
-   `$ php artisan migrate`
-   `$ php artisan key:generate`
-   `$ php artisan jwt:secret`
+    ```
+    $ composer update
+    $ npm install
+    $ npm run dev
+    $ php artisan migrate
+    $ php artisan key:generate
+    $ php artisan jwt:secret
+    ```
 
 > \*Jika memerlukan contoh backup database, filenya ada di repository dengan nama file `inventaris_lab.db`
 
