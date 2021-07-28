@@ -1,0 +1,579 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jul 28, 2021 at 08:52 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `inventaris_lab`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_kategori` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_kategori_inti` int(10) UNSIGNED NOT NULL,
+  `gambar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `nama_kategori`, `id_kategori_inti`, `gambar`, `keterangan`, `created_at`, `updated_at`) VALUES
+(14, 'obeng', 4, '/backend/kategori/1626794086.jpeg', '111', '2021-07-12 02:53:22', '2021-07-12 02:53:22'),
+(15, 'tp link', 3, '/backend/kategori/1627430597.jpeg', '123222', '2021-07-27 17:02:29', '2021-07-27 17:02:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'Rohmad Kurniadi', 'rohmad1230@gmail.com', '+6287886541321', 'Karanganom, Kauman', NULL, '2021-07-14 23:33:16', '2021-07-14 23:33:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_telp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sallery` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nid` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `joining_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `nama`, `foto`, `no_telp`, `email`, `address`, `sallery`, `nid`, `joining_date`, `created_at`, `updated_at`) VALUES
+(1, 'Rohmad Kurniadi', NULL, '+6287886541321', 'rohmad1230@gmail.com', 'Karanganom, Kauman', '22', '2', '0002-02-22', '2021-07-25 22:35:10', '2021-07-25 22:35:10'),
+(2, 'Rohmad Kurniadiw', '/backend/employee/1627277964.jpeg', '+62878865413212', 'rohmad1230@gmail.com', 'Karanganom, Kauman', '22', '1', '275760-01-01', '2021-07-25 22:37:31', '2021-07-25 22:37:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expense_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `extra`
+--
+
+CREATE TABLE `extra` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vat` int(11) NOT NULL,
+  `logo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori_intis`
+--
+
+CREATE TABLE `kategori_intis` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kategori_inti` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kategori_intis`
+--
+
+INSERT INTO `kategori_intis` (`id`, `kategori_inti`, `created_at`, `updated_at`) VALUES
+(2, 'jajan', '2021-07-10 23:55:14', '2021-07-12 05:44:22'),
+(3, 'jaringan', '2021-07-12 05:44:11', '2021-07-12 05:44:11'),
+(4, 'perkakas', '2021-07-12 05:46:00', '2021-07-12 05:46:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(91, '2014_10_12_000000_create_users_table', 1),
+(92, '2014_10_12_100000_create_password_resets_table', 1),
+(93, '2019_08_19_000000_create_failed_jobs_table', 1),
+(94, '2020_04_11_010417_create_kategori_intis_table', 1),
+(95, '2020_04_15_213800_create_employees_table', 1),
+(96, '2020_04_20_195937_create_suppliers_table', 1),
+(97, '2020_04_20_212509_create_categories_table', 1),
+(98, '2020_04_21_195614_create_products_table', 1),
+(99, '2020_04_22_202454_create_expenses_table', 1),
+(100, '2020_04_23_191542_create_salaries_table', 1),
+(101, '2020_04_25_194448_create_customers_table', 1),
+(102, '2020_04_29_190848_create_pos_table', 1),
+(103, '2020_04_30_182401_create_extra_table', 1),
+(104, '2020_04_30_200102_create_orders_table', 1),
+(105, '2020_04_30_200123_create_order_details_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `qty` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vat` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `due` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payby` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_month` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_year` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `qty`, `sub_total`, `vat`, `total`, `pay`, `due`, `payby`, `order_date`, `order_month`, `order_year`, `created_at`, `updated_at`) VALUES
+(1, 1, '0', '0', NULL, NULL, '123', '123', 'Cheaque', '15/07/2021', 'July', '2021', NULL, NULL),
+(2, 1, '2', '224', NULL, NULL, '11', '11', 'GiftCard', '15/07/2021', 'July', '2021', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `pro_quantity` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `pro_quantity`, `product_price`, `sub_total`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '2', '112', '224', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pos`
+--
+
+CREATE TABLE `pos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pro_id` int(11) NOT NULL,
+  `pro_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pro_quantity` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `root` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `buying_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `selling_price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supplier_id` int(11) DEFAULT NULL,
+  `buying_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_quantity` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `product_name`, `product_code`, `root`, `buying_price`, `selling_price`, `supplier_id`, `buying_date`, `image`, `product_quantity`, `created_at`, `updated_at`) VALUES
+(1, 14, 'jajan', '123', 'Rohmad Kurniadi2', '111', '112', 1, '2021-07-20', NULL, '121', '2021-07-14 23:39:03', '2021-07-14 23:39:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salaries`
+--
+
+CREATE TABLE `salaries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `amount` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary_month` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary_year` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_telp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_toko` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `nama`, `foto`, `no_telp`, `nama_toko`, `email`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'Rohmad Kurniadi', NULL, '+6287886541321', '12', 'rohmad1230@gmail.com', 'Karanganom, Kauman', '2021-07-14 23:38:39', '2021-07-14 23:38:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Rohmad Kurniadi', 'rohmad1230@gmail.com', NULL, '$2y$10$E/KxHky94wjYKB5I9Fzqkea3Q2WmgtNVH1fshHBKg3u5V0WLxeskq', NULL, NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categories_id_kategori_inti_foreign` (`id_kategori_inti`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `extra`
+--
+ALTER TABLE `extra`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kategori_intis`
+--
+ALTER TABLE `kategori_intis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `pos`
+--
+ALTER TABLE `pos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salaries`
+--
+ALTER TABLE `salaries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `extra`
+--
+ALTER TABLE `extra`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kategori_intis`
+--
+ALTER TABLE `kategori_intis`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pos`
+--
+ALTER TABLE `pos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `salaries`
+--
+ALTER TABLE `salaries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_id_kategori_inti_foreign` FOREIGN KEY (`id_kategori_inti`) REFERENCES `kategori_intis` (`id`);

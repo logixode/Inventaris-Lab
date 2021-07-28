@@ -103,7 +103,7 @@
 
                           <label for="exampleFormControlTextarea1" class="mt-3">
                             <b>Keterangan </b>
-                            </label>
+                          </label>
                           <input
                             type="text"
                             class="form-control"
@@ -122,30 +122,30 @@
                             <b>Gambar </b>
                           </label>
                           <div class="d-flex justify-content-center">
-                              <img
-                                v-if="form.gambar"
-                                :src="form.gambar"
-                                alt=""
-                                srcset=""
-                                class="input-image-preview bg-gray-dark"
-                              />
-                              <div
-                                v-if="!form.gambar"
-                                src="/"
-                                alt=""
-                                srcset=""
-                                class="input-image-preview default-image"
-                              >
-                                <i class="fas fa-image fa-fw"></i>
-                              </div>
+                            <img
+                              v-if="form.gambar"
+                              :src="form.gambar"
+                              alt=""
+                              srcset=""
+                              class="input-image-preview bg-gray-dark"
+                            />
+                            <div
+                              v-if="!form.gambar"
+                              src="/"
+                              alt=""
+                              srcset=""
+                              class="input-image-preview default-image"
+                            >
+                              <i class="fas fa-image fa-fw"></i>
                             </div>
+                          </div>
                           <div class="d-flex justify-content-between">
-                            <div class="w-full mt-1">
+                            <div class="w-100 mt-1">
                               <input
                                 type="file"
                                 accept="image/*"
                                 id="customFile"
-                                class="input-file w-full"
+                                class="input-file w-100"
                                 @change="onFileSelected"
                               />
                               <div
@@ -161,8 +161,6 @@
                                 <p class="m-auto">Pilih Gambar</p>
                               </div>
                             </div>
-
-                            
                           </div>
                           <small class="text-danger" v-if="errors.gambar">
                             {{ errors.gambar[0] }}
@@ -170,7 +168,6 @@
                         </div>
                       </div>
                     </div>
-                    
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">
